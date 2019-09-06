@@ -1,0 +1,206 @@
+<div class="container" *ngIf="responseDetalle">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h5 class="title-det">Detalle de la operación</h5>
+    </div>
+  </div>
+
+  <!-- Información de la operación recíproca -->
+
+  <div>
+    <div class="row">
+      <div class="col-sm-2">
+        <p class="font-weight-bold">Id de la transacción</p>
+        <label type="text" disabled value="0">{{idTransaccion}}</label>
+      </div>
+      <div class="col-sm-3">
+        <p class="font-weight-bold">Entidades involucradas</p>
+        <span class="spanVsFondoNal">
+          <div>
+            <label>{{entidadesInvolucradas[1].nombre}} - {{entidadesInvolucradas[1].id}}</label>
+          </div>
+        </span>
+        <p>
+          <strong>vs</strong>
+        </p>
+        <span class="spanVsEmpresa">
+          <div class="mx-auto">
+            <label>{{entidadesInvolucradas[0].nombre}} - {{entidadesInvolucradas[0].id}}</label>
+          </div>
+        </span>
+      </div>
+      <div class="col-sm-2">
+        <p class="font-weight-bold">Fecha de consolidación</p>
+        <label type="text" disabled value="0">{{fechaConsolidacion | date: 'dd/MM/yyyy HH:mm:ss'}}</label>
+      </div>
+      <div class="col-sm-2">
+        <p class="font-weight-bold">Fecha de cargue</p>
+        <label type="text" disabled value="0">{{fechaCargue | date: 'dd/MM/yyyy HH:mm:ss'}}</label>
+      </div>
+      <div class="col-sm-3" style="margin-bottom: 10px;">
+        <p class="font-weight-bold">Estado</p>
+        <div (mouseleave) = "hideEstados()">
+          <div class="select" tabindex="0" id="start6" (click)="showEstados()" (focus)="hideEstados()"  (keydown.enter)="showEstados()" [ngClass]="{'deployed': mostrarEstados == 'block'}">
+            {{estadoAct.descripcion}}
+          </div>
+          <div class="select-list" [ngStyle]="{'display':mostrarEstados}">
+            <ul id="list6">
+              <li tabindex="0" *ngFor="let estado of estadosPosibles" [value]="estado" (click)=cambiarEstado(estado) [ngClass]="{'selectioned': strNuevoEstado == estado.descripcion }">{{estado.descripcion}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div *ngFor="let operacionCGN of operacionesCGN">
+        <div style="border-top: 1px solid" class="row">
+          <div class="col-sm-12">
+            <p class="font-weight-bold title-ent" style="margin-bottom:2%;">{{operacionCGN.nombreEntidad}} - {{operacionCGN.idEntidad}}</p>
+          </div>
+          <div class="col-sm-2" #divAjuste1>
+            <p class="font-weight-bold">Liquidez</p>
+            <label type="text" disabled value="2">{{operacionCGN.liquidez}}</label>
+          </div>
+          <div class="col-sm-2" #divAjuste2>
+            <p class="font-weight-bold">Código cuenta</p>
+            <label type="text" disabled value="5.1.20.01" #divCodCuenta>{{operacionCGN.codigoCuenta}}</label>
+          </div>
+          <div class="col-sm-4" #divAjuste3>
+            <p class="font-weight-bold">Valor reportado</p>
+            <label type="text" disabled>${{operacionCGN.valorReportado | number:'.0-2' }}</label>
+          </div>
+          <div class="col-sm-4" #divAjuste4>
+            <p class="font-weight-bold">Partida conciliatoria</p>
+            <label type="text" disabled>${{operacionCGN.partidaConciliatoria | number:'.0-2' }}</label>
+          </div>
+          <div class="col-sm-4">
+            <p class="font-weight-bold">Cuenta</p>
+            <label>{{operacionCGN.descripcionCuenta}}</label>
+          </div>
+          <div class="col-sm-4">
+            <p class="font-weight-bold">Origen diferencia</p>
+            <label>{{operacionCGN.origenDiferencia}}</label>
+          </div>
+          <div *ngIf="operacionCGN.analistaCategoria" class="col-sm-4">
+            <p class="font-weight-bold">Analista categoría</p>
+            <label>{{operacionCGN.analistaCategoria}}</label>
+          </div>
+        </div>
+      </div>
+
+      <div *ngFor="let operacionFNA of operacionesFNA">
+        <div style="border-top: 1px solid" class="row">
+          <div class="col-sm-12">
+            <p class="font-weight-bold title-ent" style="margin-bottom:2%;">{{operacionFNA.nombreEntidad}} - {{operacionFNA.idEntidad}}</p>
+          </div>
+          <div class="col-sm-2" #divAjuste5>
+            <p class="font-weight-bold">Liquidez</p>
+            <label type="text" disabled>{{operacionFNA.liquidez}}</label>
+          </div>
+          <div class="col-sm-2" #divAjuste6>
+            <p class="font-weight-bold">Código cuenta</p>
+            <label type="text" disabled value="5.1.20.01" #divCodCuenta>{{operacionFNA.codigoCuenta}}</label>
+          </div>
+          <div class="col-sm-4" #divAjuste7>
+            <p class="font-weight-bold">Valor reportado</p>
+            <label type="text" disabled>${{operacionFNA.valorReportado | number:'.0-2' }}</label>
+          </div>
+          <div class="col-sm-4" #divAjuste8>
+            <p class="font-weight-bold">Partida conciliatoria</p>
+            <label type="text" disabled>${{operacionFNA.partidaConciliatoria | number:'.0-2' }}</label>
+          </div>
+          <div class="col-sm-4">
+            <p class="font-weight-bold">Cuenta</p>
+            <label>{{operacionFNA.descripcionCuenta}}</label>
+          </div>
+          <div class="col-sm-4">
+            <p class="font-weight-bold">Origen diferencia</p>
+            <label>{{operacionFNA.origenDiferencia}}</label>
+          </div>
+          <div *ngIf="operacionFNA.analistaCategoria" class="col-sm-4">
+            <p class="font-weight-bold">Analista categoría</p>
+            <label>{{operacionFNA.analistaCategoria}}</label>
+          </div>
+        </div>
+      </div>
+
+      <div *ngFor="let operacionGeneral of operacionesGeneral">
+        <div style="border-top: 1px solid" class="row">
+          <div class="col-sm-12">
+            <p class="font-weight-bold title-ent" style="margin-bottom:2%;">{{operacionGeneral.nombreEntidad}} - {{operacionGeneral.idEntidad}}</p>
+          </div>
+          <div class="col-sm-2" #divAjuste9>
+            <p class="font-weight-bold">Liquidez</p>
+            <label type="text" disabled>{{operacionGeneral.liquidez}}</label>
+          </div>
+          <div class="col-sm-2" #divAjuste10>
+            <p class="font-weight-bold">Código cuenta</p>
+            <label type="text" disabled value="5.1.20.01" #divCodCuenta2>{{operacionGeneral.codigoCuenta}}</label>
+          </div>
+          <div class="col-sm-4" #divAjuste11>
+            <p class="font-weight-bold">Valor reportado</p>
+            <label type="text" disabled>${{operacionGeneral.valorReportado | number:'.0-2'}}</label>
+          </div>
+          <div class="col-sm-4" #divAjuste12>
+            <p class="font-weight-bold">Partida conciliatoria</p>
+            <label type="text" disabled>${{operacionGeneral.partidaConciliatoria | number:'.0-2'}}</label>
+          </div>
+          <div class="col-sm-4">
+            <p class="font-weight-bold">Cuenta</p>
+            <label>{{operacionGeneral.descripcionCuenta}}</label>
+          </div>
+          <div class="col-sm-4">
+            <p class="font-weight-bold">Origen diferencia</p>
+            <label>{{operacionGeneral.origenDiferencia}}</label>
+          </div>
+          <div *ngIf="operacionGeneral.analistaCategoria" class="col-sm-4">
+            <p class="font-weight-bold">Analista categoría</p>
+            <label>{{operacionGeneral.analistaCategoria}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-c-adjuntos></app-c-adjuntos>
+
+    <div style="border-top: 1px solid" class="row" *ngIf="comodin1 || comodin2 || comodin3 || comodin4 || comodin5">
+      <div class="col-sm-12">
+        <p class="font-weight-bold title-ent" style="margin-bottom:2%;">Comodines</p>
+      </div>
+      <div class="col-sm-6" *ngIf="comodin1">
+        <p class="font-weight-bold">Comodín 1</p>
+        <label>{{comodin1}}</label>
+      </div>
+      <div class="col-sm-6" *ngIf="comodin2">
+        <p class="font-weight-bold">Comodín 2</p>
+        <label>{{comodin2}}</label>
+      </div>
+      <div class="col-sm-6" *ngIf="comodin3">
+        <p class="font-weight-bold">Comodín 3</p>
+        <label>{{comodin3}}</label>
+      </div>
+      <div class="col-sm-6" *ngIf="comodin4">
+        <p class="font-weight-bold">Comodín 4</p>
+        <label>{{comodin4}}</label>
+      </div>
+      <div class="col-sm-6" *ngIf="comodin5">
+        <p class="font-weight-bold">Comodín 5</p>
+        <label>{{comodin5}}</label>
+      </div>
+    </div>
+
+    <!-- Termina información de la operación recíproca -->
+
+    <div #divPivot style="margin-top: 50px;" class="row"></div>
+    <app-c-envio-mensaje *ngIf="autoridadUser !== 'ROLE_CGN_USER' && !esObsoleto" (arrayChangeEmiter)="comentarioEnviado($event)" [errCambioEstado]=errorCambioEstado></app-c-envio-mensaje>
+
+    <div style="border-top: 1px solid" class="row"></div>
+    <app-c-comentarios [arrComentarios]=arrayComentarios></app-c-comentarios>
+
+    <div class="col-sm-12 text-center" style="margin-top: 50px; margin-bottom: 50px">
+      <button type="button" class="btn btn-primary-special" (click)="IrAtras()">Atrás</button>
+    </div>
+
+  </div>
+</div>

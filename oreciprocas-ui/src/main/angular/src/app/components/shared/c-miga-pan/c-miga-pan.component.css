@@ -1,0 +1,13 @@
+.breadcrumb > li + li:before {
+    content: "";
+    padding: 0px;
+}
+.breadcrumb[_ngcontent-c5] {
+    background-color: transparent;
+    border-bottom: 1px solid #e9ecef
+}
+
+.breadcrumb-letter{
+    font-weight: normal !important;
+    text-decoration: none;
+}

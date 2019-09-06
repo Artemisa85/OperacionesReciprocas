@@ -1,0 +1,59 @@
+<div id="app-bar" class="bg-light border-welcome">
+  <div *ngIf="EsUsuarioLogueado" class="container p-0">
+    <form class="text-right">
+      <p (click)="CerrarSesion()" class="point" style="font-size: inherit" tabindex="0">
+        <u>
+          <strong>Salida segura</strong>
+        </u>
+      </p>
+      <label style="margin-right: 7px" class="color-welcome">
+        <b>Bienvenido: </b>
+      </label>
+      <label *ngIf="userCompan !== null" class="color-welcome">
+        {{userCompan}}
+      </label>
+      <label *ngIf="username !== null" class="color-welcome">
+        | {{username}}
+      </label>
+      <label *ngIf="ultimoInicioSesion !== null" class="color-welcome">
+        | {{ultimoInicioSesion}}
+      </label>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="EsUsuarioLogueado && (autoridadUser !== 'ROLE_EXTERNAL_USER' || fechaEdicionEntidad)" class="container p-0">
+  <nav id="burguer-menu" class="navbar navbar-expand-lg navbar-light heightResponsive p-0">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse col-sm-12 justify-content-left p-0" id="navbarNavDropdown" #navbarDropdown>
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown" routerLinkActive="text-primary active font-weight-bold linkSeleccionado" tabindex="0">
+          <a style="font-size:inherit;font-family: 'PT Sans', sans-serif;" class="nav-link add-down-narrow" href="#" id="navDropTransac"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Transacciones
+          </a>
+          <div class="dropdown-menu divClass" aria-labelledby="navDropTransac">
+            <a class="dropdown-item" [routerLink]="['Transacciones']" href="#">Consultar</a>
+            <a class="dropdown-item" [routerLink]="['CargarArchivo']" href="#" *ngIf="autoridadUser === 'ROLE_FNA_ADMIN'">Cargar archivo</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown" routerLinkActive="text-primary active font-weight-bold linkSeleccionado" tabindex="0">
+          <a class="nav-link add-down-narrow" href="#" id="navDropAdmin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            style="font-size:inherit;font-family: 'PT Sans', sans-serif;">
+            Administración
+          </a>
+          <div class="dropdown-menu divClass" aria-labelledby="navDropAdmin">
+            <a class="dropdown-item" [routerLink]="['Perfil']" href="#" *ngIf="autoridadUser === 'ROLE_EXTERNAL_USER'">Editar entidad</a>
+            <a class="dropdown-item" [routerLink]="['PerfilGestion']" href="#" *ngIf="autoridadUser === 'ROLE_FNA_ADMIN'">Gestionar entidades</a>
+
+            <a class="dropdown-item" [routerLink]="['CambioContrasena/CambiaContrasena']" href="#" *ngIf="autoridadUser !== 'ROLE_FNA_ADMIN'">Cambiar contraseña</a>
+            <!--*ngIf="autoridadUser !== 'ROLE_CGN_USER'" a class="dropdown-item" [routerLink]="['Plantilla']" href="#" *ngIf="autoridadUser === 'ROLE_FNA_ADMIN'">Gestionar plantillas</a-->
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

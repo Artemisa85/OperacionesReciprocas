@@ -1,0 +1,2 @@
+<input id="typeahead-focus" type="text" class="form-control campo" [(ngModel)]="value" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value); this.hideAllEmitter.emit(true);"
+  (click)="click$.next($event.target.value)" #instance="ngbTypeahead" style="color: #3c67de;"/>

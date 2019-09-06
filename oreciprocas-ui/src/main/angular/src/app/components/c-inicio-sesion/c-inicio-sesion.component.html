@@ -1,0 +1,141 @@
+<!-- <ngx-spinner bdColor="rgba(35,35,35,0.56)" size="large" color="#fff" type="ball-scale"></ngx-spinner> -->
+<div class="container">
+  <div class="row">
+    <!-- Login Persona Interna-->
+    <div *ngIf="EsInterno">
+      <div class="col-sm-12">
+        <h4>Inicio de sesión para usuarios internos del FNA</h4>
+      </div>
+      <div class="col-sm-6 col-sm-offset-3">
+        <form [formGroup]="loginFormInt" style="margin: 5%;" (ngSubmit)="submit()" novalidate>
+          <div class="form-group">
+            <p style="width: 100%" class="center-block">Usuario:</p>
+            <div class="input mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <!--div class="iconPersona"></div-->
+              </div>
+              <input type="text" class="form-control campo" id="usuario" formControlName="usuario" autofocus ondrag="return false" ondrop="return false"
+                oncontextmenu="return false" spellcheck="return false" placeholder="Usuario" (paste)="controlPegar($event)"
+                (keydown)="controlKeyDownInt($event)" #inputUsuario>
+              <!-- oncopy="return false" onpaste="return false" -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p style="width: 100%" class="center-block">Contraseña:</p>
+            <div class="input mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <!--div class="iconClave"></div-->
+              </div>
+              <input type="password" class="form-control campo" id="password" formControlName="password" ondrag="return false" ondrop="return false"
+                oncontextmenu="return false" spellcheck="return false" placeholder="Contraseña" (paste)="controlPegar($event)"
+                (keydown)="controlKeyDownInt($event)" #inputContrasena>
+              <!-- oncopy="return false" onpaste="return false" -->
+            </div>
+          </div>
+
+          <div class="form-group text-center" style="margin-top: 50px; margin-bottom: 50px">
+            <button type="submit" class="btn btn-primary" (click)="IngresarInt(inputUsuario.value, inputContrasena.value)">Iniciar sesión
+              <!--img src="./assets/icons/go.png" alt="Ingresar"-->
+            </button>
+            <!-- [disabled]="!loginFormInt.valid" -->
+          </div>
+
+          <div *ngIf="ErrorLogin" role="alert">
+            <div class="divError">
+              <span class="imgError">
+                <img src="./assets/img/fail.png" alt="">
+              </span>
+              <p class="textError">
+                {{msgError}}
+              </p>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+    <!-- Login Persona Externa -->
+    <div *ngIf="!EsInterno">
+      <div class="col-sm-12">
+        <h4>Inicio de sesión para usuarios externos del FNA</h4>
+      </div>
+      <div class="col-sm-6 col-md-offset-3 shadow p-3 mb-5 rounded">
+        <form [formGroup]="loginFormExt" style="margin: 5%;" (ngSubmit)="submit()" novalidate>
+          <div class="form-group">
+            <p style="width: 100%" class="center-block">NIT (Sin dígito de verificación):</p>
+            <div class="input mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <!--div class="iconPersona"></div-->
+              </div>
+              <input type="text" class="form-control campo" id="NIT" formControlName="NIT" autofocus ondrag="return false" ondrop="return false"
+                oncontextmenu="return false" spellcheck="return false" (paste)="controlPegar($event)" (keyup)="controlKeyUp($event)"
+                (keydown)="controlKeyDown($event)" OnlyNumber="true" placeholder="123456789" pattern=".*[0-9].*" #inputNIT>
+              <!-- [(ngModel)]="nittemp" oncopy="return false" onpaste="return false" -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p style="width: 100%" class="center-block">Identificación asignada por la contaduría:</p>
+            <div class="input mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <!--div class="iconIDCont"></div-->
+              </div>
+              <input type="text" class="form-control campo" id="IdCnt" formControlName="IdCnt" ondrag="return false" ondrop="return false"
+                oncontextmenu="return false" spellcheck="return false" placeholder="123456789" (paste)="controlPegar($event)"
+                (keyup)="controlKeyUp($event)" (keydown)="controlKeyDown($event)" OnlyNumber="true" #inputIdCnt>
+              <!-- [(ngModel)]="idcnttemp" oncopy="return false" onpaste="return false" -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p style="width: 100%" class="center-block">Contraseña:</p>
+            <div class="input mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <!--div class="iconClave"></div-->
+              </div>
+              <input type="password" class="form-control campo" id="password" formControlName="password" ondrag="return false" ondrop="return false"
+                oncontextmenu="return false" spellcheck="return false" placeholder="Contraseña" (paste)="controlPegar($event)"
+                (keydown)="controlKeyDown($event)" #inputContrasena>
+              <!-- [(ngModel)]="passtemp" oncopy="return false" onpaste="return false" -->
+            </div>
+          </div>
+
+          <div class="form-group text-center" style="margin-top: 50px; margin-bottom: 50px">
+            <button type="submit" class="btn btn-primary" (click)="IngresarExt(inputNIT.value,inputIdCnt.value,inputContrasena.value)">Iniciar sesión
+              <!--img src="./assets/icons/go.png" alt="Ingresar"-->
+            </button>
+            <!-- [disabled]="!loginFormExt.valid" -->
+          </div>
+          <div *ngIf="ErrorLogin" role="alert">
+            <div class="divError">
+              <span class="imgError">
+                <img src="./assets/img/fail.png" alt="">
+              </span>
+              <p class="textError">
+                {{msgError}}
+              </p>
+            </div>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!EsInterno" class="text-center textoApoyo">
+    <div>
+      <label>¿No tienes cuenta aún?</label>
+      <label class="btn-link" style="padding: 6px 12px" (click)="IraRegistro()">
+        <u tabindex="0" (keydown.enter)="IraRegistro()">Registrate aquí</u>
+      </label>
+    </div>
+    <div>
+      <label>¿Olvidaste tu contraseña?</label>
+      <label class="btn-link" style="padding: 6px 12px" (click)="IraCambioContrasena()">
+        <u tabindex="0" (keydown.enter)="IraCambioContrasena()">Obtener tu contraseña</u>
+      </label>
+    </div>
+  </div>
+</div>

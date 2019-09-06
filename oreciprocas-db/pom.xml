@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>co.gov.fna</groupId>
+	<artifactId>oreciprocas-db</artifactId>	
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>Operaciones Reciprocas - Script de Base de datos</name>
+	<description>Entrega continua de Scripts de Base de dato para la aplicación de Operaciones Reciprocas</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+	
+		<!-- 
+	<dependencies>
+        <dependency>
+            <groupId>com.sybase</groupId>
+            <artifactId>jconn-jdbc</artifactId>            
+            <version>4.0</version>
+        </dependency>
+    </dependencies>
+     
+	<build>
+      <plugins>
+		<plugin>
+		   <groupId>org.liquibase</groupId>
+		   <artifactId>liquibase-maven-plugin</artifactId>
+		   <version>3.6.2</version>
+		   <configuration>  
+		    <changeLogFile>${project.basedir}/src/main/resources/liquibase/db.changelog.master.xml</changeLogFile>                
+			  <propertyFile>src/main/resources/liquibase/liquibase.properties</propertyFile>
+		   </configuration>                
+		   <executions>
+			 <execution>
+			   <phase>process-resources</phase>
+			    <configuration>
+                    <tag>1.0.0</tag>
+                    <rollbackTag>1.0.0</rollbackTag>
+ 				<rollbackCount>1</rollbackCount> 
+                </configuration>                                                                  
+			   <goals>
+				    <goal>${param}</goal>				 		 				 				
+ 					<goal>update</goal> 
+			   </goals>
+			 </execution>
+		   </executions>
+		</plugin> 	
+      </plugins>
+    </build>
+		-->	
+		
+</project>

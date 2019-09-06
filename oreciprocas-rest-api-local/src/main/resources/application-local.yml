@@ -1,0 +1,7 @@
+logging:
+  file: logs\\oreciprocas\\oreciprocas_
+  level:
+    org:
+      hibernate: INFO     
+      springframework:
+        web: INFO     

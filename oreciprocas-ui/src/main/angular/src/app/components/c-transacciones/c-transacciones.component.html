@@ -1,0 +1,213 @@
+<!--ngx-spinner bdColor="" size="large" color="#ffffff" fullScreen="true" type="ball-scale">
+  <h3 class="pt-5">Por favor espere, no refresque el navegador</h3>
+</ngx-spinner-->
+
+
+<div class="container" style="border-color: white;">
+  <!-- Maquetación para ventana modal -->
+  <div class="backdrop" [ngStyle]="{'display':display}"></div>
+  <form [formGroup]="ModalForm">
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title mx-auto">Seleccione una entidad</h4>
+          </div>
+          <div class="modal-body form-group selectNoSelecc" id="divSelect">
+            <label for="slctEntidades">Entidades disponibles para gestionar:</label>
+            <select id="SelEntidadesDisp" formControlName="slctEntidades" class="form-control selectFNA" #slctEntidadesID>
+              <option class="optionSelect">FNA</option>
+              <option class="optionSelect">Alcaldía de Bogotá</option>
+              <option class="optionSelect">Fondo para el financiamiento</option>
+            </select>
+            <!-- <div *ngIf="ModalForm.get('slctEntidades').errors" class="">
+                Debe elegir una entidad para realizar sus transacciones
+            </div> -->
+          </div>
+          <div class="modal-footer">
+            <button [disabled]="!ModalForm.valid" type="button" class="btn btnFNA" (click)="SeleccionarEntidad(slctEntidadesID)">Seleccionar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- Finaliza maquetación para ventana modal -->
+
+
+  <!-- Filtros  -->
+  <!--div style="margin: 10px;">
+    <button class="btn btnFNA font-weight-bold" data-toggle="collapse" data-target="#CollapFiltr" role="button" aria-expanded="false"
+      aria-controls="CollapFiltr"> Filtros
+      <img class="imgBuscar" src="./assets/icons/forms.png">
+    </button>
+  </div-->
+
+  <div id="CollapFiltr">
+    <form [formGroup]="FormFiltrosPrim" (ngSubmit)="Filtrar(valPeriodoObject, valAnnio, typeaheadComponent.value, valEstadoObject, entidadesInv.value, idEntidad.value, idTransaccion.value )"
+      #divPrimFilt>
+      <div>
+        <div class="row">
+          <div class="form-group col-sm-3">
+            <p>Periodo</p>
+            <div (mouseleave)="hidePeriodos()">
+              <div class="select" id="start" (click)="showPeriodos()" tabindex="0" (focus)="hideAll()" (keydown.enter)="showPeriodos()" [ngClass]="{'deployed': mostrarPeriodos == 'block'}">
+                {{valPeriodo}}
+              </div>
+              <div class="select-list" [ngStyle]="{'display':mostrarPeriodos}">
+                <ul id="list">
+                  <li tabindex="0" *ngFor="let periodo of periodos" [value]="periodo" (click)=changeValPeriodo(periodo) (keypress)=changeValPeriodo(periodo)
+                    [ngClass]="{'selectioned': valPeriodo == periodo.descripcion }">{{periodo.descripcion}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-sm-3">
+            <p>Año</p>
+            <div (mouseleave)="hideAnnios()">
+              <div class="select" id="start2" (click)="showAnnios()" tabindex="0" (focus)="hideAll();hacerInvisible()" (keydown.enter)="showAnnios()"
+                [ngClass]="{'deployed': mostrarAnnios == 'block'}">
+                {{valAnnio}}
+              </div>
+              <div class="select-list" [ngStyle]="{'display':mostrarAnnios}">
+                <ul id="list2">
+                  <li tabindex="0" *ngFor="let annio of annios" [value]="annio" (click)=changeValAnnio(annio) (keypress)=changeValAnnio(annio)
+                    [ngClass]="{'selectioned': valAnnio == annio }">{{annio}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-sm-3">
+            <p class="center-block">Fecha de consolidación</p>
+              <app-typeahead [fechas]="auxdatosMultSlc" (hideAllEmitter)="hideAllEmitter($event)"></app-typeahead>
+          </div>
+          <div class="form-group col-sm-3">
+            <p>Estado</p>
+            <div (mouseleave)="hideEstados()">
+              <div class="select" id="start3" (click)="showEstados()" tabindex="0" (focus)="hideAll();hacerInvisible()" (keydown.enter)="showEstados()"
+                [ngClass]="{'deployed': mostrarEstados == 'block'}">
+                {{valEstado}}
+              </div>
+              <div class="select-list" [ngStyle]="{'display':mostrarEstados}">
+                <ul id="list3">
+                  <li tabindex="0" *ngFor="let estado of estados" [value]="estado" (click)=changeValEstado(estado) (keypress)=changeValEstado(estado)
+                    [ngClass]="{'selectioned': valEstado == estado.descripcion }">{{estado.descripcion}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-3">
+            <p class="center-block">Entidades involucradas</p>
+            <input class="campo form-control form-control-sm" formControlName="entidadesInv" #entidadesInv (focus)="hideAll()">
+          </div>
+
+          <div class="form-group col-sm-3">
+            <p class="center-block">Código de la entidad</p>
+            <input class="campo form-control form-control-sm" formControlName="idEntidad" OnlyNumber="true" #idEntidad>
+          </div>
+
+          <div class="form-group col-sm-3">
+            <p class="center-block">Id transacción</p>
+            <input class="campo form-control form-control-sm" formControlName="idTransaccion" OnlyNumber="true" #idTransaccion>
+          </div>
+
+          <div class="col-sm-12" style="text-align:center; margin-top: 30px">
+            <button [disabled]="!FormFiltrosPrim.valid" class="btn btn-primary" style="font-size: inherit;">
+              Filtrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- Finalizan Filtros  -->
+
+  <!-- Grid  -->
+  <div>
+    <h5 style="margin-bottom: 40px; margin-top: 40px">Operaciones recíprocas</h5>
+    <div style="border-bottom: 2px solid; border-top: 2px solid;">
+      <table style="text-align: center;" class="table table-sm" #tableTabla>
+        <thead>
+          <tr>
+            <th scope="col">Id transacción</th>
+            <th scope="col">Entidades involucradas</th>
+            <th scope="col">Código entidad</th>
+            <th scope="col">Entidad</th>
+            <th scope="col">Liquidez</th>
+            <th scope="col">Código cuenta</th>
+            <th scope="col">Cuenta</th>
+            <th scope="col">Valor reportado</th>
+            <th scope="col">Partida conciliatoria</th>
+            <th scope="col">Estado</th>
+          </tr>
+        </thead>
+
+        <tbody class="IEBody">
+          <tr *ngFor='let transaccion of transacciones, let i = index' class="ajusteOjo">
+            <th (click)="IrADetalle(transaccion.idTransaccion)" class="hoverid imagVerMas" scope="row">{{transaccion.idTransaccion}}</th>
+            <td style="vertical-align: middle;" [ngClass]="{'campos-vacios': transaccion.entidadesInvolucradas == null}">{{transaccion.entidadesInvolucradas}}</td>
+            <td [ngClass]="{'campos-vacios': transaccion.codigoEntidad == null}">{{transaccion.codigoEntidad }}</td>
+            <td [ngClass]="{'campos-vacios': transaccion.nombreEntidad == null}">{{transaccion.nombreEntidad}}</td>
+            <td [ngClass]="{'campos-vacios': transaccion.liquidez == null}">{{transaccion.liquidez}}</td>
+            <td [ngClass]="{'campos-vacios': transaccion.codCuenta == null}">{{transaccion.codCuenta}}</td>
+            <td [ngClass]="{'campos-vacios': transaccion.descCuenta == null}">{{transaccion.descCuenta}}</td>
+            <td [ngClass]="{'campos-vacios': transaccion.valorReportado == null}">{{transaccion.valorReportado}}</td>
+            <td [ngClass]="{'campos-vacios': transaccion.partidaConciliatoria == null}">{{transaccion.partidaConciliatoria}}</td>
+            <td [ngClass]="{'campos-vacios': transaccion.descEstado == null}">{{transaccion.descEstado}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Finaliza grid -->
+
+
+
+  <!-- Paginador -->
+  <div class="text-center">
+    <div>
+      <ul *ngIf="transacciones" class="pagination">
+        <li class="page-item" (click)="Paginar('-1')">
+          <a class="page-link">Anterior</a>
+        </li>
+        <li class="page-item" *ngIf="numPaginaActual > 3" (click)="Paginar('first')">
+          <a class="page-link">1</a>
+        </li>
+        <li class="page-item" *ngIf="numPaginaActual > 3" (click)="Paginar('-4')">
+          <a class="page-link">...</a>
+        </li>
+
+        <li class="page-item" *ngIf="ultimaPag > 0" (click)="Paginar(rangoPag)">
+          <a class="page-link" [ngClass]="{'selectPag': rangoPag === numPaginaActual}">{{rangoPag+1}}</a>
+        </li>
+        <li class="page-item" *ngIf="ultimaPag > 1 && (rangoPag+1 < ultimaPag)" (click)="Paginar(rangoPag+1)">
+          <a class="page-link" [ngClass]="{'selectPag': rangoPag+1 === numPaginaActual}">{{rangoPag+2}}</a>
+        </li>
+        <li class="page-item" *ngIf="ultimaPag > 2 && (rangoPag+2 < ultimaPag)" (click)="Paginar(rangoPag+2)">
+          <a class="page-link" [ngClass]="{'selectPag': rangoPag+2 === numPaginaActual}">{{rangoPag+3}}</a>
+        </li>
+        <li class="page-item" *ngIf="ultimaPag > 3 && (rangoPag+3 < ultimaPag)" (click)="Paginar(rangoPag+3)">
+          <a class="page-link" [ngClass]="{'selectPag': rangoPag+3 === numPaginaActual}">{{rangoPag+4}}</a>
+        </li>
+
+        <li class="page-item" *ngIf="rangoPag + 4 < ultimaPag" (click)="Paginar('+4')">
+          <a class="page-link">...</a>
+        </li>
+        <li class="page-item" *ngIf="rangoPag + 4 < ultimaPag" (click)="Paginar('last')">
+          <a class="page-link">{{ultimaPag}}</a>
+        </li>
+        <li class="page-item" (click)="Paginar('+1')">
+          <a class="page-link">Siguiente</a>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-sm-12" style="text-align:center; margin-top: 30px">
+        <button class="btn btn-primary" style="font-size: inherit;" *ngIf="transacciones!=null && transacciones!=undefined && transacciones.length>0 && autoridadUser === 'ROLE_FNA_ADMIN'"
+          (click)="getExcelFromTable()">Descargar archivo</button>
+      </div>
+    </div>
+  </div>
+
+</div>

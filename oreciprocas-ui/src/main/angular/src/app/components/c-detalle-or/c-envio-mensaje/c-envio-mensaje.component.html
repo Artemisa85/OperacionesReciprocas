@@ -1,0 +1,59 @@
+<div>
+  <div class="row">
+    <div class="col-sm-12">
+    <h5 class="title-det" for="txtAreaComent" style="margin-bottom: 50px">Gestión de la operación</h5>
+  </div>
+    <div class="col-sm-12 mt-3">
+      <div>Registra en este campo las actividades realizadas para dar respuesta a las inconsistencias reportadas en la operación.
+        Esta gestión la puedes soportar con documentos que podrás anexar frente al campo gestión. Da clic en Guardar</div>
+    </div>
+
+    <div class="col-12 col-sm-8">
+      <p style="margin-bottom: 30px">
+        <span id="clipBox" title = "Adjuntar archivo">
+          <img style="height:20px;" src="./assets/icons/clip.png" (click)="ClickFileInput()" (keydown.enter)="ClickFileInput()" tabindex="0">
+        </span>
+      </p>
+      <textarea style="height: 180px;" class="form-control" id="txtAreaComent" rows="7" #txtAreaComent [(ngModel)]="txtComentarios"
+        maxlength="500"></textarea>
+    </div>
+
+    <div class="col-12 col-sm-4 visibilidad p-0">
+      <div class= "color-alert" style="text-align: end;right: 7%;">*Se aceptan archivos de hasta {{tamMaxArch/1048576}}MB</div>
+      <div class="dropzone" dragndrop (filesChangeEmiter)="onFilesChange($event)" [allowed_extensions]=tiposPermitidos [maxTam]=tamMaxArch
+        [msgError]=msgErrorPeso [msgAllowedExtensions]=msgErrorTipo>
+        <div class="text-wrapper">
+          <div class="centered">Arrastre aquí sus archivos</div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="errCambioEstado" class="col-sm color-alert">*Debes incluir un comentario para cambiar tu estado manualmente</div>
+
+    <div class="col-sm-12 text-center">
+      <button class="btn btn-primary-special" style="margin-top:1%;"  (click)="SubirServidor()">Guardar</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="card" style="width: auto; margin-top:1%;" *ngIf="archivosASubir.length > 0">
+  <div style="font-weight: 600;" class="card-header">
+    Adjuntos
+  </div>
+  <ul class="list-group list-group-flush" *ngFor="let file of archivosASubir;let i = index">
+    <li class="list-group-item">
+      <div id="closeBox" (click)="EliminarArchivo(i,file.name)" alt="Eliminar">
+        <span id="x">X</span>
+      </div>
+      <div class="container">
+        <div class="row">
+          <img class="col-4" style="max-width: 66px;max-height: 40px;" [src]="file.urlIcono" [alt]="file.name">
+          <p class="col-6" style="margin-top: 10px">{{i+1}} - {{file.name}}. </p>
+          <p class="col-3" style="margin-top: 10px">{{file.size/1048576| number:'1.0-2'}} MB</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<input type="file" (change)="cargaArchivo($event.target.files);" style="visibility:hidden;" multiple #inputFileBrowser>

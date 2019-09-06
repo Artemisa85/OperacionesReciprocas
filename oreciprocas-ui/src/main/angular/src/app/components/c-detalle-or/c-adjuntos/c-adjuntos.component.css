@@ -1,0 +1,28 @@
+/* loader - spinner */
+:host /deep/ .black-overlay {
+  position: fixed !important;
+}
+
+:host /deep/ .la-ball-scale.la-3x[_ngcontent-c9]>div[_ngcontent-c9] {
+  background: URL(./assets/img/logoFNAloader.png) no-repeat !important;
+  width: 150px;
+  height: 150px;
+}
+
+/* Cuando la pantalla es de 575px o menor */
+@media only screen and (max-width: 575px) {
+  .ajusteTextoPequeno{
+    text-align: start;
+  }
+}
+.title-ent {
+  color: #3c67de;
+}
+p.font-weight-bold{
+  margin-top:10px;
+}
+
+p{
+  margin: 0px 0 0px;
+  line-height:1em;
+}

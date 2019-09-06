@@ -1,0 +1,88 @@
+<!--gx-spinner bdColor="" size="large" color="#ffffff" fullScreen="true" type="ball-scale">
+  <h3 class="pt-5">Por favor espere, no refresque el navegador</h3>
+</ngx-spinner-->
+
+<div class="container mb-4">
+
+  <div class="row  d-flex justify-content-center">
+    <div class="col-sm-6">
+      <span id="clipBox" (click)="ClickFileInput()" class="pointer" title="Adjuntar archivo" tabindex="0" (keydown.enter)="ClickFileInput()">
+        <img id="clip-adjuntar" style="height:20px;" src="./assets/icons/clip.png">
+        <b>Adjuntar archivo</b>
+      </span>
+      <input type="file" (change)="adjuntarArchivo($event.target.files);" style="visibility:hidden;" multiple #inputFileBrowser>
+
+      <div class="dropzone pointer" dragndrop (filesChangeEmiter)="onFilesChange($event)" [allowed_extensions]=TiposPermitidos
+        [maxTam]=tamMaxArch [msgError]=msgErrorPeso [msgAllowedExtensions]=msgTiposPermitidos>
+        <div class="text-wrapper">
+          <div class="centered">Arrastrar archivo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row  d-flex justify-content-center" *ngIf="archivoACargar != null">
+    <div class="col-sm-8" style="width: auto; margin-top:1%;">
+      <div class="card">
+        <div class="card-header">
+          Archivo listo para cargar
+        </div>
+        <div class="card-body">
+          <div class="container">
+            <div class="row text-center d-flex justify-content-center">
+              <img class="col-md-3" style="max-width: 66px;max-height: 40px;" [src]="archivoACargar.urlIcono" [alt]="archivoACargar.name">
+              <p class="col-md-5 mt-3">{{archivoACargar.name}}</p>
+              <p class="col-md-3 mt-3">{{archivoACargar.size/1048576| number:'1.0-2'}} MB</p>
+              <button class="col-md-1 btn" id="closeBox" (click)="EliminarArchivo()" alt="Eliminar">
+                <img src="./assets/img/fail.png" alt="">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-center" *ngIf="archivoACargar != null">
+
+
+    <div class="col-sm-12 text-center">
+      <button class="btn btn-primary-special" style="margin-top:1%;" (click)="cargarArchivo()">Cargar archivo</button>
+    </div>
+
+    <div class="col-sm-8 text-center">
+      <div class="alert alert-danger alert-dismissible show mt-2" *ngIf="showErrorResume">
+        <h4 class="alert-heading mb-0">Errores en cargue</h4>
+        <p>El archivo que intenta cargar contiene errores de estructura y/o contenido para ver el detalle de los errores de
+          clic
+          <b class="pointer enlace" (click)="downloadErrorFile()">
+            <u>Aquí</u>
+          </b>
+        </p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="col-sm-8 text-center">
+      <div class="alert alert-success alert-dismissible show mt-2" *ngIf="showOkResume">
+        <h4 class="alert-heading mb-0">Cargue exitoso</h4>
+        <p class="mb-0">Transacciones Leidas
+          <b>{{transaccionesCargadas}}</b>
+        </p>
+        <p class="mb-0">Transacciones con Error
+          <b>0</b>
+        </p>
+        <p>Transacciones Cargadas
+          <b>{{transaccionesCargadas}}</b>
+        </p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

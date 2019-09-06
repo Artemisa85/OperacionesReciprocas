@@ -1,0 +1,435 @@
+/* Personalizaciones para identidad corporativa del FNA */
+/* Adaptación de Bootstrap 4 */
+input[type='text'],
+input[type='number'],
+input[type='password'],
+input[type='email'],
+textarea {
+  outline: none;
+  box-shadow: none !important;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('./assets/fonts/icomoon.eot?rvd4xs');
+  src:  url('./assets/fonts/icomoon.eot?rvd4xs#iefix') format('embedded-opentype'),
+    url('./assets/fonts/icomoon.ttf?rvd4xs') format('truetype'),
+    url('./assets/fonts/icomoon.woff?rvd4xs') format('woff'),
+    url('./assets/fonts/icomoon.svg?rvd4xs#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'source_sans_probold';
+  src: url('./assets/fonts/sourcesanspro-bold-webfont.eot');
+  src: url('./assets/fonts/sourcesanspro-bold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('./assets/fonts/sourcesanspro-bold-webfont.woff2') format('woff2'),
+       url('./assets/fonts/sourcesanspro-bold-webfont.woff') format('woff'),
+       url('./assets/fonts/sourcesanspro-bold-webfont.ttf') format('truetype'),
+       url('./assets/fonts/sourcesanspro-bold-webfont.svg#source_sans_probold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Encabezados */
+h3 {
+	color: #283a85;
+	font-weight: bold;
+}
+
+h4 {
+	color: #283a85;
+	font-size: 24px;
+}
+
+h5 {
+	color: #3c67de;
+	font-size: 22px;
+}
+
+h6 {
+  color: #545454;
+  font-size: inherit !important; 
+}
+
+.campo-invalido {
+  border: 1px solid #b00000 !important;
+  background: url(./assets/img/fail.png) no-repeat 98% 50% !important;
+}
+
+.campo-invalido-dropdown {
+  border: 1px solid #b00000 !important;
+}
+
+.campo-valido {
+  border: 1px solid #338733 !important;
+  background: url(./assets/img/success.png) no-repeat 98% 50% !important;
+}
+
+.campo {
+  border-radius: 8px !important;
+  height: 48px !important;
+}
+
+.texto-invalido {
+  margin: 0 !important;
+  line-height: 1.3em !important;
+  padding: 10px 20px !important;
+  display: table-cell !important;
+  width: 80% !important;
+  vertical-align: middle !important;
+  color: #dc3545 !important;
+}
+
+.texto-valido {
+  width: 100% !important;
+  margin-top: .25rem !important;
+  font-size: 80% !important;
+  color: #338733;
+}
+
+.btnFNA {
+  background: #3c67de;
+  color: #ffffff;
+  font-size: 15px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  font-family: 'Source Sans Pro', sans-serif !important;
+  min-height: 43px !important; 
+}
+
+.btnFNA:hover {
+  background: #5683ff;
+ }
+
+.btnFNA:active {
+  background: #4f78e9;
+  color: #c3cff6;
+}
+
+.dropdown-item:hover {
+  background: #ebebeb;
+}
+
+.tablaFNA {
+  border-top: 3px solid #333333;
+  border-bottom: 3px solid #333333;
+}
+
+.tablaFNA td {
+  border-top: 1px solid #dee2e6;
+  color: #555f72;
+  padding: 1.5em 1em !important;
+  font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+.tablaFNA th {
+  font-size: 20px !important;
+  color: #283a85 ;
+  padding: 1.5em 1em !important;
+  font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+
+.divError{
+  border: 1px solid #b00000;
+  width: 100% !important;
+  border-radius: 8px !important;
+  font-family: 'Source Sans Pro', sans-serif !important;
+  font-size: 16px !important;
+  position: relative !important;
+  display: table !important;
+  table-layout: fixed !important;
+  overflow: hidden !important;
+}
+.imgError{
+  margin: 0 !important;
+  width: 16% !important;
+  max-width: 90px !important;
+  display: table-cell !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  background: #efd9d7;
+}
+.textError{
+  color: #b00000 ;
+  margin: 0 !important;
+  line-height: 1.3em !important;
+  padding: 10px 20px !important;
+  display: table-cell !important;
+  width: 80% !important;
+  /*font-size: 16px !important;*/
+  vertical-align: middle !important;
+  text-align: center !important;
+}
+.divSuccess{
+  border: 1px solid #338733;
+  width: 100% !important;
+  border-radius: 8px !important;
+  font-family: 'Source Sans Pro', sans-serif !important;
+  font-size: 16px !important;
+  position: relative !important;
+  display: table !important;
+  table-layout: fixed !important;
+  overflow: hidden !important;
+}
+.imgSuccess{
+  margin: 0 !important;
+  width: 16% !important;
+  max-width: 90px !important;
+  display: table-cell !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  background: #e3f2d5;
+}
+.textSuccess{
+  color: #338733 ;
+  margin: 0 !important;
+  line-height: 1.3em !important;
+  padding: 10px 20px !important;
+  display: table-cell !important;
+  width: 80% !important;
+  /*font-size: 16px !important;*/
+  vertical-align: middle !important;
+  text-align: center !important;
+}
+.subTitulo{
+  color: #0d0e11;
+}
+/* Íconos */
+.iconPersona {
+  background: URL(./assets/icons/alone.png) no-repeat #fff !important;
+  min-width: 33px !important;
+  margin-top: 25% !important;
+}
+
+.iconClave {
+  background: URL(./assets/icons/padlock.png) no-repeat #fff !important;
+  min-width: 33px !important;
+  margin-top: 25% !important;
+}
+
+.iconIDCont{
+    background: URL(./assets/icons/engagement.png) no-repeat #fff !important;
+    min-width: 33px !important;
+    margin-top: 25% !important;
+}
+
+.iconEntInvoluc{
+    background: URL(./assets/icons/life-insurance-com.png) no-repeat #fff !important;
+    min-width: 33px !important;
+    margin-top: 25% !important;
+}
+
+.iconIDTransac{
+    background: URL(./assets/icons/proof-it.png) no-repeat #fff !important;
+    min-width: 33px !important;
+    margin-top: 25% !important;
+}
+
+.iconEstado{
+    background: URL(./assets/icons/state.PNG) no-repeat #fff !important;
+    min-width: 33px !important;
+    margin-top: 25% !important;
+}
+
+.iconCorreo{
+  background: URL(./assets/icons/mail.png) no-repeat #fff !important;
+  min-width: 33px !important;
+  margin-top: 25% !important;
+}
+
+.iconCalendario{
+  background: URL(./assets/icons/calendar.PNG) no-repeat #fff !important;
+  min-width: 33px !important;
+  margin-top: 25% !important;
+}
+
+.iconGroup{
+  background: URL(./assets/icons/group.png) no-repeat #fff !important;
+  min-width: 33px !important;
+  margin-top: 25% !important;
+}
+
+.iconMeetIt{
+  background: URL(./assets/icons/meet-it.png) no-repeat #fff !important;
+  min-width: 33px !important;
+  margin-top: 25% !important;
+}
+
+.iconRequestIt{
+  background: URL(./assets/icons/request-it.png) no-repeat #fff !important;
+  min-width: 33px !important;
+  margin-top: 25% !important;
+}
+
+.iconUpload{
+  background: URL(./assets/icons/upload.png) no-repeat #fff !important;
+}
+/* Flecha css */
+i {
+  border: solid white;
+  border-width: 0 3px 3px 0 !important;
+  display: inline-block !important;
+  padding: 3px !important;
+}
+.right {
+  transform: rotate(-45deg) !important;
+  -webkit-transform: rotate(-45deg) !important;
+}
+.left {
+  transform: rotate(135deg) !important;
+  -webkit-transform: rotate(135deg) !important;
+}
+
+/* Para readonly */
+.ng-invalid.campo-invalido {
+  background-color: white ;
+}
+iframe {
+  padding: 0 !important;
+  margin: 0 !important;
+  border:none !important;
+}
+
+.form-control, .dropdown-menu {
+  font-size: inherit !important;
+}
+
+.navbar-nav {
+  padding-left: 0px !important;
+}
+
+.btn-danger{
+  border: 0px !important;
+}
+
+table, td, tr {
+  vertical-align: middle !important;
+  font-size: inherit !important;
+}
+
+.separator {
+  color: #3c67de;
+  margin: 0px 15px;
+  top: 2px;
+  position: relative;
+  font-size: 25px;
+}
+
+/********************************/
+.select {
+	height: 48px;
+	padding: 16px 20px;
+	width: 100%;
+	border-radius: 8px;
+	border: 1px solid #c7c7cb;
+	position: relative;
+	color: #3c67de;
+  line-height: 1em;
+  cursor: pointer;
+}
+
+.select:after {
+	display: block;
+	position: absolute;
+	width: 15px;
+	height: 14px;
+	top: 0;
+	bottom: 0;
+	margin: auto 0;
+	right: 20px;
+	content: "\e259";
+	font-family: 'Glyphicons Halflings';
+}
+
+.select.deployed:after {
+	content: "\e260";
+}
+
+.select-list {
+	width: 90%;
+	border-radius: 8px;
+  border: 1px solid #c7c7cb;
+  z-index: 2;
+  position: absolute;
+  background: white;
+}
+
+.select-list ul {
+	padding: 0;
+  margin: 0;
+}
+
+.select-list ul li {
+	height: 48px;
+	padding: 16px 40px;
+	width: 100%;
+	list-style: none;
+	font-family: 'Source Sans Pro', sans-serif;
+  color: #646464;
+  cursor: pointer;
+}
+
+.select-list ul li.selectioned {
+	border-top: 1px solid #c7c7cb;
+	border-left: 4px solid #3c67de;
+}
+
+.select-list ul li:hover {
+	background: #ebebeb;
+}
+
+.btn-primary {
+  margin: 7px;
+}
+.navbar-dark .navbar-toggler {
+  border-color: rgba(255,255,255,.5) !important;
+}
+
+.icon-fup:before {
+  content: "\e919";
+  font-family: 'icomoon'
+}
+
+#toTop span.icon-fup {
+  position: absolute;
+    display: block;
+    color: #003685;
+    top: -40px;
+    left: 16px;
+    font-size: 25px;
+    border: 2px solid #003685;
+    border-radius: 50%;
+    padding: 5px;
+    font-weight: 700;
+    height: 38.8px;
+}
+
+#toTop {
+  -webkit-transition: all ease 0.2s;
+  -moz-transition: all ease 0.2s;
+  -ms-transition: all ease 0.2s;
+  -o-transition: all ease 0.2s;
+  transition: all ease 0.2s;
+  bottom: 30px;
+  cursor: pointer;
+  color: #1c1c1c;
+  font-family: 'source_sans_probold';
+  font-size: 20px;
+  opacity: .3;
+  position: fixed;
+  text-align: center;
+  right: 40px;
+  z-index: 99;
+  display: none
+}
+
+#toTop:hover {
+  opacity: 1;
+}
+
+.contrast-toTop {
+  border: 2px solid #fff !important;
+}

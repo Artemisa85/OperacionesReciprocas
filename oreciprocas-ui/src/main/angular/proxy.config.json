@@ -1,0 +1,7 @@
+{
+    "/FNA-TemplateUI/*": {
+        "target":"https://fnabogpsoa.fna.gov.co:8099",
+        "secure": false,
+        "changeOrigin": true
+     }
+}

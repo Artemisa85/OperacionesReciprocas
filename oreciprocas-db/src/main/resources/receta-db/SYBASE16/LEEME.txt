@@ -1,0 +1,43 @@
+######################################################################################################
+#												     	
+# Author: Guillemo Enrique García Carrasquilla							     	
+# Date:   24-01-2019										     
+# Description: Pasas para instalar la base de datos de OPERACIONES RECIPROCAS en SYBASE 16           	
+######################################################################################################
+
+######################################################################################################
+#
+#   PASOS PARA LA INSTACI�N DE LA BASE DE DATOS DE OPERACIONES RECIPROCAS 
+#
+######################################################################################################
+PREREQUISITO:
+
+Tener presente que los instaladores de SYBASE 16 deben ser ubicados en la raiz 
+de la unidad donde se encuentra ubicado este archivo ejemplo:	
+
+	C:\Instaladores\FNA\
+
+
+1) Instalar vagrant.
+   Nota: Omitir este paso en caso que ya tenga instalado el vagrant.
+
+2) Solicitar a su líder la caja de CentOS7.box para importar la caja con vagrant:
+
+	rem Importar caja(vm) solo con Centos7 basico
+	vagrant box add fna/centos7 CentOS7.box --insecure
+
+   Nota: Omitir este paso en caso que ya tenga la caja importada.
+
+3) Para instalar la base de datos en la caja: CentOS7.box, ejecutar desde consola el siguiente comando:
+	 vagrant up
+
+   Nota: Omitir este paso en caso que ya tenga la caja instalada. 
+
+4) Para crear la base de datos de "oreciprocas" en el motor de base de datos
+   ejecutar desde consola el siguiente comando :
+
+   vagrant provision --provision-with create_db_oreciprocas
+
+   Nota: Omitir en caso que ya tenga instala la base de datos: "oreciprocas" 
+
+######################################################################################################

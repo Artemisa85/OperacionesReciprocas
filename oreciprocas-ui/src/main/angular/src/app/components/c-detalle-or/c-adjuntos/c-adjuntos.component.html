@@ -1,0 +1,19 @@
+<div style="border-top: 1px solid" class="row">
+  <div class="col-sm-12">
+    <p class="title-ent font-weight-bold " style="margin-bottom:2%;">Contacto del contador de la entidad recíproca</p>
+  </div>
+
+  <div class="col-sm-4">
+    <p for="inputNombreCont" class="font-weight-bold">Nombre</p>
+    <label type="text" id="inputNombreCont" readonly>{{NombreCont}}</label>
+  </div>
+  <div class="col-sm-4">
+    <p for="inputEmailCont" class="font-weight-bold">Correo</p>
+    <label type="email" id="inputEmailCont" readonly>{{EmailCont}}</label>
+  </div>
+  <div class="col-sm-4">
+    <p class="font-weight-bold">Contacto</p>
+    <label type="text" id="inputContactoCont" readonly>{{ContactoCont}}</label>
+    <label *ngIf="ContactoCont2" type="text" class="form-control form-control-sm" id="inputContactoCont2" readonly>{{ContactoCont2}}</label>
+  </div>
+</div>

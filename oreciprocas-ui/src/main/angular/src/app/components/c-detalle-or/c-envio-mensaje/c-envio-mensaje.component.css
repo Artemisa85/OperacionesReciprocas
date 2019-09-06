@@ -1,0 +1,101 @@
+.custom-file-label::after {
+  content: "Buscar";
+}
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+  content: "Buscar";
+}
+
+.dropzone {
+  min-height: 100px;
+  min-width: 100%;
+  height: 184px;
+  width: 100%;
+  display: table;
+  background-color: #eee;
+  border: dashed 3px #aaa;
+  margin-top: 10px;
+}
+.dropzone:hover {
+  border-color:#eee;
+}
+
+.text-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.centered {
+  font-family: sans-serif;
+  font-size: 1.3em;
+  font-weight: bold;
+  text-align: center;
+}
+
+#closeBox {
+  background: rgb(224, 10, 10);
+  color: #fff;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  margin-right: 4%;
+  margin-top: 1%;
+}
+#clipBox{
+  position: absolute;
+  right: 5%;
+  top: 0;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+#clipBox:hover{
+  border-style: dotted;
+  transform:scale(1.3);
+}
+li.list-group-item:hover {
+  background-color: beige;
+}
+
+/* Cuando la pantalla es de 500px o menor */
+@media only screen and (max-width: 500px) {
+  .visibilidad{
+    display: none;
+  } 
+}
+
+.btn {
+  padding: 6px 12px !important;
+  font-size: 14px !important;
+  line-height: 1.42857143 !important;
+}
+.btn-primary-special {
+  background-color: #2541A5;
+  border-color: transparent;
+  color: #fff;
+  border-radius: 4px !important;
+}
+.title-ent {
+  color: #3c67de;
+}
+
+p{
+  margin: 0px 0 0px;
+  line-height:1em;
+}
+
+.title-det {
+  color: #3c67de;
+  font-size: 22px ;
+}
+
+.color-alert {
+  color: red;
+}

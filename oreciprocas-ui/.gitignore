@@ -1,0 +1,6 @@
+/.apt_generated/
+src/main/angular/node_modules
+src/main/angular/node
+src/main/angular/.vscode
+src/main/webapp
+package-lock.json

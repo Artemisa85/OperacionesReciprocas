@@ -1,0 +1,43 @@
+  <div *ngFor="let coment of arrComentarios">
+
+    <div  class="container" style="margin-top:10px;">
+
+      <div id="divPrimerContenido" [ngClass]="coment.autorRol === rolUsuario ? 'row justify-content-end' : 'row justify-content-start' ">
+
+        <div id="divSegundoContenido" class="col-sm-12 border-bottom border-top p-0" [ngClass]="coment.autorRol === rolUsuario ? ' rounded-left border-left' : 'rounded-right border-right'">
+
+          <div id="divNombreUsuario" [ngClass]="coment.autorRol === rolUsuario ? 'headerUser' : 'headerNoUser'">{{coment.autor}}<label id="divFecha" class="divFecha">{{coment.fecha}}</label>
+          </div>
+          <div class="card-body">
+            <p id="divComentUsuario" class="">{{coment.texto}}</p>
+          </div>
+          <hr>
+          <div class="container">
+            <div *ngIf="coment.adjuntos" class="row" style="cursor: not-allowed">
+              <div *ngFor="let anexo of coment.adjuntos" class="ArchAnex" (click)="descargarAdjunto(anexo)">
+                <!-- Switch para asignar ícono a cada adjunto -->
+                <div [ngSwitch]="anexo.extension">
+                  <!-- Excel -->
+                    <img id="divIconAnexo" *ngSwitchCase=" anexo.extension === 'xls' || anexo.extension === 'xlsx' || anexo.extension === 'xlsm' || anexo.extension === 'ods' ? anexo.extension : '' " style="max-width: 54px; max-height: 28px;" src="./assets/icons/excel.png" [alt]="anexo.nombre">
+                  <!-- PDF -->
+                    <img id="divIconAnexo" *ngSwitchCase="'pdf'" style="max-width: 54px; max-height: 28px;" src="./assets/icons/pdf.png" [alt]="anexo.nombre">
+                  <!-- Documentos -->
+                    <img id="divIconAnexo" *ngSwitchCase=" anexo.extension === 'doc' || anexo.extension === 'docx' || anexo.extension === 'odt' ? anexo.extension : '' " style="max-width: 54px; max-height: 28px;" src="./assets/icons/word.png" [alt]="anexo.nombre">
+                  <!-- Correos -->
+                    <img id="divIconAnexo" *ngSwitchCase=" anexo.extension === 'msg' || anexo.extension === 'eml' ? anexo.extension : '' " style="max-width: 54px; max-height: 28px;" src="./assets/icons/correo.png" [alt]="anexo.nombre">
+                  <!-- Presentaciones -->
+                    <img id="divIconAnexo" *ngSwitchCase=" anexo.extension === 'odp' || anexo.extension === 'pptx' || anexo.extension === 'pptm' || anexo.extension === 'ppt' || anexo.extension === 'ppsx' || anexo.extension === 'ppsm' || anexo.extension === 'pps' ? anexo.extension : '' " style="max-width: 54px; max-height: 28px;" src="./assets/icons/powerPoint.png" [alt]="anexo.nombre">
+                  <!-- Imagenes -->
+                    <img id="divIconAnexo" *ngSwitchCase=" anexo.extension === 'jpg' || anexo.extension === 'jpeg' || anexo.extension === 'png' || anexo.extension === 'jpe' || anexo.extension === 'jfif' || anexo.extension === 'bmp' ? anexo.extension : '' " style="max-width: 54px; max-height: 28px;" src="./assets/icons/imagen.png" [alt]="anexo.nombre">
+                  <!-- Default -->
+                    <img id="divIconAnexo" *ngSwitchDefault style="max-width: 54px; max-height: 28px;" src="./assets/icons/archivo.png" [alt]="anexo.nombre">
+                </div>
+                <div style="font-size:12px; margin-right: 2px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;width: 16em;">{{anexo.nombre}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr style="border:none">
+    </div>
+  </div>

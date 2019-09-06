@@ -1,0 +1,185 @@
+/* span.btnEstado{ 
+    padding: 10px 35px;  
+    overflow:hidden;
+}
+
+span.btnEstado:hover {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+span.btnEstado:before {
+
+    content: url('./../../../assets/icons/pencil.PNG');
+    position: absolute ;
+    right: -100%;
+    transition: all 300ms ease;
+    overflow:hidden;
+
+}
+
+span.btnEstado:hover:before {
+    right: 8%;
+    top: 1.4%;
+} */
+
+.divEstado{
+    position: absolute;
+    right: 1%;
+    top: 1%;
+}
+
+p.font-weight-bold{
+    margin-top:10px;
+    font-weight: 700;
+}
+.bordeado {
+  border-width: 2px;
+  border-color: rgb(142, 160, 6);
+  border-style: dotted;
+}
+
+.idTransac {
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 50%;
+  height: 30%;
+  margin: auto;
+}
+
+input.form-control, 
+label.form-control{
+    font-size: 14px;
+    margin: 0 0 0px;
+}
+
+p{
+  margin: 0px 0 0px;
+  line-height:1em;
+}
+
+.primerDiv{
+    border-bottom: 1px solid #dccece;
+    padding-bottom: 5px;
+}
+
+.spanVsFondoNal{
+    background-color: #deeae4;
+    width: 100%;
+    white-space: normal;
+    font-size: inherit !important;
+}
+
+.spanVsEmpresa{
+    background-color: #c7daf5;
+    width: 100%;
+    white-space: normal;
+    font-size: inherit !important;
+}
+
+.divOpFondoNal{
+    border-bottom: 3px solid #deeae4;
+    border-top: 3px solid #deeae4;
+    border-radius: 10px;
+    padding-bottom: 12px;
+}
+
+.divOpEmpresa{
+    border-bottom: 3px solid #c7daf5;
+    border-top: 3px solid #c7daf5;
+    border-radius: 10px;
+    padding-bottom: 12px;
+}
+
+.divOpCGN{
+    border-bottom: 3px solid rgb(207, 204, 204);;
+    border-top: 3px solid rgb(207, 204, 204);;
+    border-radius: 10px;
+    padding-bottom: 12px;
+}
+
+.ajusteDivDatos {
+    position: absolute;
+    bottom: 0;
+    width: 88%;
+}
+/* Cuando la pantalla es de 990px o menor */
+@media only screen and (max-width: 991px) {
+    .ajusteDivDatos{
+        position: inherit;;
+        bottom:0;
+        max-width:100%;
+    }
+}
+
+/* Cuando la pantalla es de 575px o menor */
+@media only screen and (max-width: 575px) {
+    .ajusteDivDatos{
+        position: inherit;;
+        bottom:0;
+        max-width:100%;
+    }
+
+    .divOpFondoNal{
+        border-bottom: 3px solid #deeae4;
+        border-right: 3px solid #deeae4;
+        border-left: 3px solid #deeae4;
+        border-radius: 10px;
+        border-top: 3px solid #deeae4;
+        padding-bottom: 12px;
+    }
+
+    .divOpEmpresa{
+        border-bottom: 3px solid #c7daf5;
+        border-right: 3px solid #c7daf5;
+        border-left: 3px solid #c7daf5;
+        border-radius: 10px;
+        padding-bottom: 12px;
+    }
+    
+    
+    .divOpCGN{
+        border-bottom: 3px solid rgb(207, 204, 204);
+        border-right: 3px solid rgb(207, 204, 204);
+        border-left: 3px solid rgb(207, 204, 204);
+        border-radius: 10px;
+        border-top: 3px solid rgb(207, 204, 204);
+        padding-bottom: 12px;
+    }
+
+    .divEstado{
+        position: initial
+    }
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.btn {
+    padding: 6px 12px !important;
+    font-size: 14px !important;
+    line-height: 1.42857143 !important;
+  }
+  .btn-primary-special {
+    background-color: #2541A5;
+    border-color: transparent;
+    color: #fff;
+    border-radius: 4px !important;
+  }
+
+  .title-det {
+        color: #3c67de;
+        font-size: 22px ;
+  }
+
+  .title-ent {
+    color: #3c67de;
+  }

@@ -1,0 +1,115 @@
+.boton {
+    font-size: 16px;
+}
+
+.boton:hover {
+    border: 1px solid;
+}
+
+.nav-link {
+    font-family: 'source_sans_probold';
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.nav-link:active {
+    color: #003685 !important;
+}
+
+.nav-link:visited {
+    color: #003685 !important;
+}
+
+.linkSeleccionado{
+    border-bottom: solid #003685 2pt;
+}
+
+.divSelect {
+    border: 1px solid #d3d3d3 !important;
+    -webkit-box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.2);
+    -moz-box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.2);
+    box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.2);
+}
+
+p {
+    font-size: 14px;
+    font-weight: normal;
+    color: #003685;
+    margin: 0px !important;
+}
+
+a.dropdown-item:hover {
+    background-color: white !important;
+    width: 90%;
+}
+
+a.dropdown-item {
+    margin: 11px;
+}
+
+div.divClass a::before {
+    content: '\2022';
+    display: block;
+    float: left;
+    margin-left: -6px;
+    margin-right: 5px;
+    font-size: 12px;
+    color: #203982;
+}
+
+div.divClass{
+    z-index: 1;
+    background: white;
+    position: absolute;
+    top: 2.4em;
+    border: 1px solid #d3d3d3 !important;
+    border-radius: 0px 5px 5px 5px;
+    -webkit-box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.2);
+    -moz-box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.2);
+    box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.2);
+}
+
+.nav-item.dropdown.show {
+    border-bottom: solid #003685 2pt;
+}
+
+.heightResponsive{
+    height: 42px;
+}
+
+/* Cuando la pantalla es de 990px o menor */
+@media only screen and (max-width: 991px) {
+    .heightResponsive{
+        height: auto;
+    }
+    .div.divClass{
+        position: static;
+    }
+    .navbar-nav {
+        margin: inherit;
+    }
+} 
+
+.navbar-expand-lg {
+   justify-content: space-between!important;
+}
+
+
+.point {
+    cursor: pointer;
+}
+
+.color-welcome {
+    color: #3c67de;
+}
+
+.border-welcome {
+    border-bottom: 1px solid #e9ecef;
+}
+
+.add-down-narrow::after {
+    content: "\e259";
+    font-family: 'Glyphicons Halflings';
+    color: #3C67DE;
+    vertical-align: inherit;
+}

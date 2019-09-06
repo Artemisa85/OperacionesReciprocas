@@ -1,0 +1,228 @@
+<div class="container" *ngIf="autoridadUser === 'ROLE_FNA_ADMIN' && !isEntidadDetalle && !isCrearEntidad">
+
+  <!-- Filtros -->
+  <div id="filtroEntidad">
+    <!-- <form [formGroup]="formFiltroEntidad" (ngSubmit)=""> -->
+    <form [formGroup]="formFiltroEntidad" (ngSubmit)="obtenerEntidades()">
+      <div>
+        <div class="row">
+          <div class="form-group col-sm-3">
+            <p class="center-block">NIT</p>
+            <input class="form-control form-control-sm campo" formControlName="filtroNit" OnlyNumber="true" maxlength="9">
+          </div>
+
+          <div class="form-group col-sm-3">
+            <p class="center-block">Código entidad</p>
+            <input class="form-control form-control-sm campo" formControlName="filtroIdCgn" OnlyNumber="true" maxlength="9">
+          </div>
+
+          <div class="form-group col-sm-3">
+            <p class="center-block">Nombre</p>
+            <input class="form-control form-control-sm campo" formControlName="filtroNombreEntidad" maxlength="40">
+          </div>
+
+          <div class="col-sm-3" style="text-align:center; margin-top: 15px">
+            <button class="btn btn-primary" style="font-size: inherit !important;">
+              Filtrar
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- Finalizan Filtros  -->
+
+  <h5 class="title-table" style="margin-top: 40px;margin-bottom: 5px">Entidades</h5>
+  <div style="text-align:right; margin-bottom: 5px">
+    <form id="crearBtnForm">
+      <button (click)="activarFormularioCreacion()" class="btn btn-primary" style="font-size: inherit !important;">Crear</button>
+    </form>
+  </div>
+  <div style="text-align:center; border-bottom: 2px solid; border-top: 2px solid;">
+
+    <table style="text-align: center;" class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Nit</th>
+          <th scope="col">Código entidad</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Sigla</th>
+        </tr>
+      </thead>
+      <tbody class="IEBody">
+        <tr *ngFor='let entidad of listaEntidades, let i = index' class="ajusteOjo">
+          <th (click)="obtenerDetalleEntidad(entidad.idCGN)" (keydown.enter)="obtenerDetalleEntidad(entidad.idCGN)" class="hoverid imagVerMas" scope="row" style="vertical-align: middle" tabindex="0">{{entidad.nit}}</th>
+          <td>{{entidad.idCGN}}</td>
+          <td>{{entidad.razonSocial}}</td>
+          <td>{{entidad.sigla}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Paginador -->
+  <div class="text-center">
+    <ul *ngIf="listaEntidades" class="pagination d-flex justify-content-center">
+      <li class="page-item" (click)="Paginar('-1')" tabindex="0" (keydown.enter)="Paginar('-1')">
+        <a class="page-link">Anterior</a>
+      </li>
+      <li class="page-item" *ngIf="numPaginaActual > 3" (click)="Paginar('first')" tabindex="0" (keydown.enter)="Paginar('first')">
+        <a class="page-link">1</a>
+      </li>
+      <li class="page-item" *ngIf="numPaginaActual > 3" (click)="Paginar('-4')" tabindex="0" (keydown.enter)="Paginar('-4')">
+        <a class="page-link">...</a>
+      </li>
+
+      <li class="page-item" *ngIf="ultimaPag > 0" (click)="Paginar(rangoPag)" tabindex="0" (keydown.enter)="Paginar(rangoPag)">
+        <a class="page-link" [ngClass]="{'selectPag': rangoPag === numPaginaActual}">{{rangoPag+1}}</a>
+      </li>
+      <li class="page-item" *ngIf="ultimaPag > 1 && (rangoPag+1 < ultimaPag)" (click)="Paginar(rangoPag+1)" tabindex="0" (keydown.enter)="Paginar(rangoPag+1)">
+        <a class="page-link" [ngClass]="{'selectPag': rangoPag+1 === numPaginaActual}">{{rangoPag+2}}</a>
+      </li>
+      <li class="page-item" *ngIf="ultimaPag > 2 && (rangoPag+2 < ultimaPag)" (click)="Paginar(rangoPag+2)" tabindex="0" (keydown.enter)="Paginar(rangoPag+2)">
+        <a class="page-link" [ngClass]="{'selectPag': rangoPag+2 === numPaginaActual}">{{rangoPag+3}}</a>
+      </li>
+      <li class="page-item" *ngIf="ultimaPag > 3 && (rangoPag+3 < ultimaPag)" (click)="Paginar(rangoPag+3)" tabindex="0" (keydown.enter)="Paginar(rangoPag+3)">
+        <a class="page-link" [ngClass]="{'selectPag': rangoPag+3 === numPaginaActual}">{{rangoPag+4}}</a>
+      </li>
+
+      <li class="page-item" *ngIf="rangoPag + 4 < ultimaPag" (click)="Paginar('+4')" tabindex="0" (keydown.enter)="Paginar('+4')">
+        <a class="page-link">...</a>
+      </li>
+      <li class="page-item" *ngIf="rangoPag + 4 < ultimaPag" (click)="Paginar('last')" tabindex="0" (keydown.enter)="Paginar('last')">
+        <a class="page-link">{{ultimaPag}}</a>
+      </li>
+      <li class="page-item" (click)="Paginar('+1')" tabindex="0" (keydown.enter)="Paginar('+1')">
+        <a class="page-link">Siguiente</a>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="container">
+  <form [formGroup]="FormPerfil" (ngSubmit)="editarPerf(FormPerfil.value)" novalidate #form="ngForm" *ngIf="isEntidadDetalle || isCrearEntidad">
+    <h5 class="title-table" style="margin-top: 40px; margin-bottom: 40px" *ngIf="!isCrearEntidad">Editar entidad</h5>
+    <h5 class="title-table" style="margin-top: 40px; margin-bottom: 40px" *ngIf="isCrearEntidad">Crear entidad</h5>
+    <div>
+      <div class="rounded-bottom" style="margin-top:15px; margin-bottom: 20px; border-bottom: 3px solid rgba(0,0,0,.1); ">
+        <h6 style="font-weight: bold">Datos de entidad</h6>
+      </div>
+      <div>
+        <div class="row">
+          <div class="form-group col-sm-3">
+            <p for="nit">Nit</p>
+            <input id="nit" type="text" formControlName="nit" class="form-control  campo" [readonly]="!isCrearEntidad" OnlyNumber="true"
+              maxlength="9" #inputNit (paste)="validNumber($event.clipboardData.getData('text/plain'))">
+          </div>
+          <div class="form-group col-sm-6">
+            <p for="idCGN">Identificación asignada por la Contaduría General de la Nación</p>
+            <input id="idCGN" type="text" class="form-control campo" formControlName="idCGN" maxlength="9" [readonly]="!isCrearEntidad"
+              #inputIdCgn>
+          </div>
+          <div class="form-group col-sm-3">
+            <p for="fechaModificacion">Última actualización</p>
+            <input class="form-control  campo" formControlName="fechaModificacion" id="fechaModificacion" readonly>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-9">
+            <p for="razonSocial">Entidad</p>
+            <input type="text" formControlName="razonSocial" id="razonSocial" class="form-control campo" maxlength="200" #inputNombreEntidad>
+          </div>
+          <div class="form-group col-sm-3">
+            <p for="sigla">Sigla</p>
+            <input type="text" formControlName="sigla" id="sigla" class="form-control campo" placeholder="FNA" maxlength="50" #inputSigla (focus)="hideAll()">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <p>Departamento</p>
+            <div (mouseleave)="hideDepartamentos()">
+              <div class="select" id="start4" (click)="showDepartamentos()" (keydown.enter)="showDepartamentos()" tabindex="0" (focus)="hideAll()" [ngClass]="{'deployed': mostrarDepartamentos == 'block'}" #inputDpto>
+                {{valDepartamento}}
+              </div>
+              <div class="select-list" [ngStyle]="{'display':mostrarDepartamentos}">
+                <ul id="list4">
+                  <li tabindex="0" *ngFor="let dpto of listaDepartamentos" [value]="dpto" (click)=updateListMunicipios(dpto) [ngClass]="{'selectioned': valDepartamento == dpto.nombre }">{{dpto.nombre}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
+            <p>Ciudad</p>
+            <div (mouseleave)="hideMunicipios()">
+              <div class="select" id="start5" (click)="showMunicipios()"  (keydown.enter)="showMunicipios()" tabindex="0" (focus)="hideAll()" [ngClass]="{'deployed': mostrarMunicipios == 'block'}" #inputCiudad>
+                {{valMunicipio}}
+              </div>
+              <div class="select-list" [ngStyle]="{'display': mostrarMunicipios}">
+                <ul id="list5">
+                  <li tabindex="0" *ngFor="let municipio of listaMunicipios" [value]="municipio.codigoDANE" (click)=changeValMunicipio(municipio) [ngClass]="{'selectioned': valMunicipio == municipio.nombre }">{{municipio.nombre}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <p for="direccion">Dirección</p>
+            <input type="text" class="form-control campo" formControlName="direccion" id="direccion" maxlength="100" #inputDireccion (focus)="hideAll()">
+          </div>
+          <div class="form-group col-sm-6">
+            <p for="telefono">Teléfono</p>
+            <input type="text" class="form-control campo" formControlName="telefono" id="telefono" maxlength="50" #inputTelefono>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-bottom" style="margin-top:15px; margin-bottom: 20px; border-bottom: 3px solid rgba(0,0,0,.1);">
+        <h6 style="font-weight: bold">Datos de contacto</h6>
+      </div>
+      <div>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <p for="nombreContacto">Nombre contacto</p>
+            <input type="text" class="form-control campo" formControlName="nombreContacto" id="nombreContacto" autocomplete="off" maxlength="40"
+              #inputNombreContacto>
+          </div>
+          <div class="form-group col-sm-6">
+            <p for="apellidoContacto">Apellido contacto</p>
+            <input type="text" class="form-control campo" formControlName="apellidoContacto" id="apellidoContacto" autocomplete="off"
+              maxlength="40" #inputApellidoContacto>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <p for="correo">E-mail</p>
+            <input type="email" class="form-control campo" formControlName="correo" id="correo" autocomplete="off" maxlength="100" #inputCorreo>
+          </div>
+          <div class="form-group col-sm-6">
+            <p for="sitioWEB">Pagina Web</p>
+            <input type="text" class="form-control campo" formControlName="sitioWEB" id="sitioWEB" autocomplete="off" placeholder="https://www.fna.gov.co/"
+              maxlength="100" #inputSitioWeb>
+          </div>
+        </div>
+
+        <div class="text-center" style="margin-top: 50px; margin-bottom: 50px">
+          <button *ngIf="autoridadUser === 'ROLE_FNA_ADMIN'" class="btn btn-primary" style="font-size: inherit;" (click)="restablecerFormEdit()">Volver</button>
+          <button class="btn btn-primary" style="font-size: inherit;" type="submit">Guardar</button>
+        </div>
+
+        <div *ngIf="errorDatos" role="alert">
+          <div class="divError">
+            <span class="imgError">
+              <img src="./assets/img/fail.png" alt="">
+            </span>
+            <p class="textError">
+              {{msgError}}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

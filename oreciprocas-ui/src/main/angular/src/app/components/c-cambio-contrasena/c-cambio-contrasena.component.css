@@ -1,0 +1,11 @@
+.imgErrorBig {
+  position: relative;
+  margin-left: 50%;
+  margin-top: 50%;
+}
+
+.politicaspswd {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #3c67de;
+}

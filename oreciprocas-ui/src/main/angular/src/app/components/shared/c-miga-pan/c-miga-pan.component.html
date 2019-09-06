@@ -1,0 +1,14 @@
+<div [ngStyle]="{'display':display}" class="container" style="margin-bottom: 40px; margin-top: 20px">
+  <div class="row">
+    <div class="col-sm-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb" style="font-family: 'PT Sans', sans-serif; font-size: inherit;padding: 0" id="breadcrumb">
+          <li class="breadcrumb-item active p-0" aria-current="page" *ngFor="let breadcrumb of breadcrumbs$ | async">
+            <a class="breadcrumb-letter" [innerHTML]="breadcrumb.label | booleanConvencion">
+            </a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>

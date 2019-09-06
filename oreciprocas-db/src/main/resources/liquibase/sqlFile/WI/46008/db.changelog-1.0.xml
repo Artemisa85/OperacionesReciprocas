@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="autoIncrement" value="true" dbms="Sybase" />
+
+    <changeSet id="1.0.0" author="guillermo.garcia">
+        <tagDatabase tag="1.0.0" />
+    </changeSet>
+
+    <changeSet id="1-WI-46008-CREACION-INICIAL-TABLAS-ORECIPROCAS" author="guillermo.garcia">
+        <comment>Creación inicial de las tabla de Oreciprocas</comment>
+
+        <sqlFile path="exec/01_oreciprocas_db.sql" splitStatements="true"
+                 endDelimiter="GO" relativeToChangelogFile="true" />
+
+        <rollback>
+            <sqlFile path="rollback/01_oreciprocas_db_rollback.sql"
+                     splitStatements="true" endDelimiter="go" relativeToChangelogFile="true" />
+        </rollback>
+    </changeSet>
+	
+    <changeSet id="2-WI-46008-INSERT-TABLA-ADM_DEPARTAMENTO" author="guillermo.garcia">
+        <comment>Carga inicial de datos en la tabla ADM_DEPARTAMENTO</comment>
+
+        <sqlFile path="exec/02_insert_departamentos.sql" splitStatements="true"
+                 endDelimiter="GO" relativeToChangelogFile="true" />
+
+        <rollback>
+            <sqlFile path="rollback/02_insert_departamentos_rollback.sql"
+                     splitStatements="true" endDelimiter="go" relativeToChangelogFile="true" />
+        </rollback>
+    </changeSet>
+	
+    <changeSet id="3-WI-46008-INSERT-TABLA-ADM_MUNICIPIO" author="guillermo.garcia">
+        <comment>Carga inicial de datos en la tabla ADM_MUNICIPIO</comment>
+
+        <sqlFile path="exec/03_insert_municipios.sql" splitStatements="true"
+                 endDelimiter="GO" relativeToChangelogFile="true" />
+
+        <rollback>
+            <sqlFile path="rollback/03_insert_municipios_rollback.sql"
+                     splitStatements="true" endDelimiter="go" relativeToChangelogFile="true" />
+        </rollback>
+    </changeSet>
+	
+    <changeSet id="4-WI-46008-INSERT-TABLA-OAUTH_CLIENT" author="zamir.garcia">
+        <comment>Carga inicial de datos en la tabla OAUTH_CLIENT</comment>
+
+        <sqlFile path="exec/04_insert_oauth_client.sql" splitStatements="true"
+                 endDelimiter="GO" relativeToChangelogFile="true" />
+
+        <rollback>
+            <sqlFile path="rollback/04_insert_oauth_client_rollback.sql"
+                     splitStatements="true" endDelimiter="go" relativeToChangelogFile="true" />
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="5-WI-46008-INSERT-TABLA-ADM_ENTIDAD" author="guillermo.garcia">
+        <comment>Carga inicial de datos en la tabla ADM_ENTIDAD</comment>
+
+        <sqlFile path="exec/05_insert_entidades.sql" splitStatements="true"
+                 endDelimiter="GO" relativeToChangelogFile="true" />
+
+        <rollback>
+            <sqlFile path="rollback/05_insert_entidades_rollback.sql"
+                     splitStatements="true" endDelimiter="go" relativeToChangelogFile="true" />
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="6-WI-46008-INSERT-TABLA-PLANTILLA" author="zamir.garcia">
+        <comment>Carga inicial de las plantillas de correo</comment>
+
+        <sqlFile path="exec/06_insert_plantilla.sql" splitStatements="true"
+                 endDelimiter="GO" relativeToChangelogFile="true" />
+
+        <rollback>
+            <sqlFile path="rollback/06_insert_plantilla_rollback.sql"
+                     splitStatements="true" endDelimiter="go" relativeToChangelogFile="true" />
+        </rollback>
+    </changeSet>
+    
+    <changeSet id="7-WI-46008-INSERT-TABLA-PLANTILLA" author="zamir.garcia">
+        <comment>Carga inicial de configuraciones de la app</comment>
+
+        <sqlFile path="exec/07_insert_configuracion.sql" splitStatements="true"
+                 endDelimiter="GO" relativeToChangelogFile="true" />
+
+        <rollback>
+            <sqlFile path="rollback/07_insert_configuracion_rollback.sql"
+                     splitStatements="true" endDelimiter="go" relativeToChangelogFile="true" />
+        </rollback>
+    </changeSet>
+	
+</databaseChangeLog>

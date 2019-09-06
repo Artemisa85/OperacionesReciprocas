@@ -1,0 +1,16 @@
+<!--ngx-spinner [ngStyle]="{'display':display}" bdColor="rgb(255,255,255)" size="large" color="#fff" type="ball-scale"></ngx-spinner-->
+<ngx-spinner bdColor="rgba(35,35,35,0.3)" size="large" color="#ffffff" type="none"></ngx-spinner>
+
+<app-c-cabecera-fna></app-c-cabecera-fna>
+<app-c-banner></app-c-banner>
+<app-c-menu></app-c-menu>
+<app-c-miga-pan ></app-c-miga-pan>
+<div style="border: none;margin: auto;" >
+  <div [@routeAnimations]="prepareRoute(outlet)" >
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
+</div>
+
+<div id="toTop" (click)="IrArriba()"> <span class="icon-fup"></span> Ir arriba</div>
+
+<app-c-pie-pagina-fna></app-c-pie-pagina-fna>

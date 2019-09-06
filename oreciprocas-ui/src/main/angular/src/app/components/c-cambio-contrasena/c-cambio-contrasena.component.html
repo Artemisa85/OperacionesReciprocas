@@ -1,0 +1,221 @@
+<!-- <ngx-spinner bdColor="rgba(35,35,35,0.56)" size="large" color="#fff" type="ball-scale"></ngx-spinner> -->
+<div class="container" *ngIf="Habilitar">
+
+  <div class="row">
+
+    <!-- Si olvida la contraseña  -->
+    <div *ngIf="ContrasenaOlvidada">
+      <div class="col-sm-12">
+        <h4>Recuperación de contraseña</h4>
+      </div>
+      <div class="col-sm-6 col-sm-offset-3 shadow p-3 mb-5 rounded">
+        <form [formGroup]="OlvidoContrasenaForm" style="margin: 5%" novalidate>
+          <div class="form-group">
+            <p style="width: 100%" class="center-block">NIT (Sin dígito de verificación):</p>
+            <div class="input mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <!--div class="iconPersona"></div-->
+              </div>
+              <input type="text" class="form-control campo" id="NIT" formControlName="NIT" (blur)="ConsultarCorreo(inputUserNIT.value, inputIdCGN.value)"
+                autofocus (paste)="handlerPegar($event)" (keydown)="handlerKeyDown($event)" (keyup)="handlerKeyUp($event)"
+                OnlyNumber="true" placeholder="123456789" #inputUserNIT>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p style="width: 100%" class="center-block">Id asignado por la contaduría</p>
+            <div class="input mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <!--div class="iconIDCont"></div-->
+              </div>
+              <input type="text" class="form-control campo" id="idcgn" formControlName="idcgn" (blur)="ConsultarCorreo(inputUserNIT.value, inputIdCGN.value)"
+                placeholder="123456789" (paste)="handlerPegar($event)" (keydown)="handlerKeyDown($event)" (keyup)="handlerKeyUp($event)"
+                OnlyNumber="true" #inputIdCGN>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p style="width: 100%" class="center-block">Correo electrónico:</p>
+            <div class="input mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <!--div style="margin-top: 17% !important; min-width: 36px;" class="iconCorreo"></div-->
+              </div>
+              <input type="email" formControlName="CorreoE" class="form-control campo" value={{strCorreo}} readonly placeholder="usuario@dominio.com"
+                #inputCorreo>
+            </div>
+          </div>
+
+          <div class="row text-center" style="margin-top: 50px; margin-bottom: 50px">
+            <!-- Se muestra solo si no es un usuario logueado -->
+            <div class="col-sm-6" *ngIf="!EsUsuarioLogueado">
+              <button style="min-height:0;width:88.59px;" class="p-2 bd-highlight btn btn-primary" style="font-size: inherit;"  [routerLink]="['/InicioSesion']">
+                <!--i class="left"></i-->Regresar</button>
+            </div>
+            <div class="col-sm-6 text">
+              <button style="min-height: 0;" class="p-2 bd-highlight btn btn-primary" (click)="RestablecerContrasena(inputUserNIT.value,inputIdCGN.value)">Aceptar
+                <!--i class="right"></i-->
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Termina si olvida la contraseña -->
+
+    <!-- Si es la primera vez que ingresa 
+    <div class="col col-md-6 offset-md-3 shadow p-3 mb-5 rounded" *ngIf="EsPrimeraVez">
+
+      <form [formGroup]="PrimeraVezForm" style="margin: 5%;" novalidate>
+        <h4 style="border-bottom: 1px solid #555f72; padding-bottom: 10px;">Cambio de contraseña</h4>
+        <p>Debe cambiar su contraseña, al ser el primer ingreso al sistema</p>
+
+        <div class="form-group">
+          <p style="width: 100%" class="center-block">Nueva contraseña:</p>
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div style="margin-top: 17% !important; min-width: 36px;" class="iconClave"></div>
+            </div>
+            <input type="password" class="form-control" [ngClass]="{'campo-invalido': PrimeraVezForm.get('password').errors, 'campo-valido': !PrimeraVezForm.get('password').errors }"
+              formControlName="password" #inputContrasena>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p style="width: 100%" class="center-block" [ngClass]="ComparaContrasena(inputContrasena.value, inputContrasena2.value)">Confirme su nueva contraseña:</p>
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div style="margin-top: 17% !important; min-width: 36px;" class="iconPersona"></div>
+            </div>
+            <input type="password" class="form-control" formControlName="password2" [ngClass]="{'campo-invalido': PrimeraVezForm.get('password2').errors || ContrIguales==false, 'campo-valido': !PrimeraVezForm.get('password2').errors && ContrIguales }"
+              #inputContrasena2>
+          </div>
+        </div>
+
+      </form>
+
+      <div class="row">
+        <button [disabled]="!ContrIguales " class="col-md-8 offset-md-2 btn btn-block btnFNA" (click)="PrimeraContrasena(inputContrasena.value)">Establecer nueva contraseña</button>
+      </div>
+
+    </div>
+    < Termina si es la primera vez que ingresa -->
+
+    <!-- Si cambio contraseña -->
+
+    <div *ngIf="CambioContrasena">
+      <div class="col-sm-12">
+        <h5 style="margin-top: 40px;margin-bottom: 40px">Cambio de contraseña</h5>
+      </div>
+      <div class="col-sm-6 col-sm-offset-3 shadow p-3 mb-5 rounded">
+        <form [formGroup]="CambioContrasenaForm" style="margin: 5%" novalidate>
+          <div class="form-group">
+            <p style="width: 100%" class="center-block">Usuario/NIT:</p>
+            <div class="input mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <!--div style="margin-top: 17% !important; min-width: 36px;" class="iconPersona"></div-->
+              </div>
+              <input type="text" autofocus class="form-control campo" id="NIT" formControlName="NIT" placeholder="123456789" (paste)="handlerPegarCambio($event)"
+                (keydown)="handlerKeyDownCambio($event, CambioContrasenaForm)" (keyup)="handlerKeyUpCambio($event)" OnlyNumber="true"
+                #inputUserNIT [readonly]="bloquearCampoNit">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p style="width: 100%" class="center-block">Id entidad</p>
+            <div class="input mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <!--div style="margin-top: 17% !important; min-width: 36px;" class="iconIDCont"></div-->
+              </div>
+              <input type="text" class="form-control campo" id="idcgn" formControlName="idcgn" placeholder="123456789" (paste)="handlerPegarCambio($event)"
+                (keydown)="handlerKeyDownCambio($event)" (keyup)="handlerKeyUpCambio($event)" OnlyNumber="true" #inputIdCGN
+                [readonly]="bloquearCampoIdCgn">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p style="width: 100%" class="center-block">Contraseña actual:</p>
+            <div class="input mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <!--div style="margin-top: 17% !important; min-width: 36px;" class="iconClave"></div-->
+              </div>
+              <input type="password" class="form-control campo" id="passwordActual" formControlName="passwordActual" (paste)="handlerPegarCambio($event)"
+                (keydown)="handlerKeyDownCambio($event)" placeholder="Su contraseña actual" #inputContrasenaActual>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p style="width: 100%" class="center-block">Nueva contraseña:</p>
+            <div class="input mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <!--div style="margin-top: 17% !important; min-width: 36px;" class="iconClave"></div-->
+              </div>
+              <input type="password" class="form-control campo" id="password" formControlName="password" (paste)="handlerPegarCambio($event)"
+                (keydown)="handlerKeyDownCambio($event)" placeholder="Su nueva contraseña" #inputContrasena>
+              <small class="politicaspswd" (click)="verPoliticasPSWD()" tabindex="0" (keydown.enter)="verPoliticasPSWD()">Ver politicas de contraseña</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p style="width: 100%" class="center-block">Confirme su contraseña:</p>
+            <div class="input mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <!--div style="margin-top: 17% !important; min-width: 36px;" class="iconClave"></div-->
+              </div>
+              <input type="password" class="form-control campo" id="password2" formControlName="password2" (paste)="handlerPegarCambio($event)"
+                (keydown)="handlerKeyDownCambio($event)" placeholder="Su nueva contraseña" #inputContrasena2>
+            </div>
+          </div>
+
+          <div class="row text-center" style="margin-bottom: 50px;margin-top: 50px">
+            <div class="col-sm-6">
+              <button style="min-height: 0;width: 105.86px;" class="p-2 bd-highlight btn btn-primary" style="font-size: inherit;"  (click)="IrAtras()">
+                <!--i class="left"></i-->Regresar</button>
+            </div>
+            <div class="col-sm-6">
+              <button style="min-height: 0;" class="p-2 bd-highlight btn btn-primary" style="font-size: inherit;"  (click)="CambiarContrasena(inputUserNIT.value, inputIdCGN.value, inputContrasenaActual.value, inputContrasena.value, inputContrasena2.value)">Cambiar contraseña
+                <!--i class="right"></i-->
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+    <!-- Termina si cambio contraseña -->
+
+  </div>
+
+  <!-- Al enviar al servidor datos -->
+  <div>
+    <div div class="col-sm-6 col-sm-offset-3 shadow p-3 mb-5 rounded">
+      <form style="margin: 5%">
+        <div *ngIf="DatosEnviados">
+          <div *ngIf="ErrorDatos" role="alert">
+            <div class="divError">
+              <span class="imgError">
+                <img src="./assets/img/fail.png" alt="">
+              </span>
+              <p class="textError">{{msgError}}</p>
+            </div>
+          </div>
+          <div *ngIf="!ErrorDatos" role="alert">
+            <div class="divSuccess">
+              <span class="imgSuccess">
+                <img src="./assets/img/success.png" alt="">
+              </span>
+              <p class="textSuccess">{{msgErrorDatos}}</p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- No se muestra solo si es un usuario interno -->
+<div class="container" style="margin: 3% 0%; " *ngIf="!Habilitar">
+  <h3 style="text-align: center;">Esta página no está habilitada para usuarios internos del Fondo Nacional del ahorro</h3>
+  <span class="imgErrorBig">
+    <img src="./assets/img/big-fail.png" alt="">
+  </span>
+</div>

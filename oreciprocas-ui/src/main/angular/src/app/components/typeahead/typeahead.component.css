@@ -1,0 +1,188 @@
+:host /deep/ .dropdown {
+  position: relative !important;
+}
+
+:host /deep/  .dropdown-toggle::after {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+}
+
+:host /deep/  .dropdown-toggle:empty::after {
+  margin-left: 0;
+}
+
+:host /deep/ .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  width: 90%;
+  border-radius: 8px;
+  border: 1px solid #c7c7cb;
+}
+
+:host /deep/ .dropup .dropdown-menu {
+  margin-top: 0;
+  margin-bottom: 0.125rem;
+}
+
+:host /deep/ .dropup .dropdown-toggle::after {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0.3em solid;
+  border-left: 0.3em solid transparent;
+}
+
+:host /deep/ .dropup .dropdown-toggle:empty::after {
+  margin-left: 0;
+}
+
+:host /deep/ .dropright .dropdown-menu {
+  margin-top: 0;
+  margin-left: 0.125rem;
+}
+
+:host /deep/ .dropright .dropdown-toggle::after {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0.3em solid transparent;
+  border-bottom: 0.3em solid transparent;
+  border-left: 0.3em solid;
+}
+
+:host /deep/ .dropright .dropdown-toggle:empty::after {
+  margin-left: 0;
+}
+
+:host /deep/ .dropright .dropdown-toggle::after {
+  vertical-align: 0;
+}
+
+:host /deep/ .dropleft .dropdown-menu {
+  margin-top: 0;
+  margin-right: 0.125rem;
+}
+
+:host /deep/ .dropleft .dropdown-toggle::after {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+}
+
+:host /deep/ .dropleft .dropdown-toggle::after {
+  display: none;
+}
+
+:host /deep/ .dropleft .dropdown-toggle::before {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-right: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0.3em solid transparent;
+  border-right: 0.3em solid;
+  border-bottom: 0.3em solid transparent;
+}
+
+:host /deep/ .dropleft .dropdown-toggle:empty::after {
+  margin-left: 0;
+}
+
+:host /deep/ .dropleft .dropdown-toggle::before {
+  vertical-align: 0;
+}
+
+:host /deep/ .dropdown-divider {
+  height: 0;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  border-top: 1px solid #e9ecef;
+}
+
+:host /deep/ .dropdown-item {
+  display: block;
+  width: 100%;  
+  clear: both;  
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  height: 48px;
+  padding: 16px 20px;
+  width: 100%;
+  list-style: none;
+  font-family: 'Source Sans Pro', sans-serif;
+  cursor: pointer;
+}
+
+:host /deep/ .dropdown-item:hover, .dropdown-item:focus {
+  color: #16181b;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+
+:host /deep/ .dropdown-item.active, .dropdown-item:active *{
+  text-decoration: none;
+  background: #ebebeb;
+}
+
+:host /deep/ .dropdown-item.disabled, .dropdown-item:disabled {
+  color: #6c757d;
+  background-color: transparent;
+}
+
+:host /deep/ .dropdown-menu.show {
+  display: block;
+}
+
+:host /deep/ .dropdown-header {
+  display: block;
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 0;
+  font-size: 0.875rem;
+  color: #6c757d;
+  white-space: nowrap;
+}
+
+:host /deep/ .ngb-highlight {
+  color: #3c67de !important;
+}
+
+:host /deep/ .button {
+  font-weight: none !important;
+}

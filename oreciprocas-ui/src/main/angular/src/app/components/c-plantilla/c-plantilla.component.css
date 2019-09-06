@@ -1,0 +1,186 @@
+
+  select::-ms-expand {
+    display: none;
+  }
+  
+  .imagVerMas {
+    transition: 0.1s;
+    text-align:center;
+    vertical-align: middle !important;
+    color: #007bff;
+    text-decoration: underline;
+  }
+  
+  .imagVerMas:hover {
+    border: 1.5px dotted grey;
+    background-color: #e0dcdc;
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+  
+  .ajusteOjo {
+    height: 61px;
+    max-height: 61px;
+    transition: .1s;
+  }
+  
+  .ajusteOjo:hover {
+    transform: scale(1.02);
+    background-color: #f1eded;
+  }
+ 
+  /* Cuando la pantalla es de 1200px o menor */
+  @media only screen and (max-width: 1200px) {
+    .ajusteOjo {
+      height: auto;
+      max-height: initial;
+    }
+  
+    .divSegFiltro {
+      position: inherit;
+      bottom: 0;
+      padding-left: 0;
+      width: 100%;
+      margin-left: 0%;
+      right: 0;
+      padding-top: 280px;
+    }
+  
+    .tdSegFiltro {
+      width: 100%;
+    }
+  
+    .BtnFiltro2 {
+      margin-left: 0%;
+    }
+  }
+  
+  /* Cuando la pantalla es de 1216px o menor */
+  @media only screen and (max-width: 1216px) {
+  
+    /* Para IE11 */
+    /* @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { */
+    .IEBody {
+      min-height: 564px;
+    }
+  
+    /* } */
+  
+  }
+  
+  /* Cuando la pantalla es de 991px o menor */
+  @media only screen and (max-width: 991px) {
+  
+  }
+  
+  /* Cuando la pantalla es de 767px o menor */
+  @media only screen and (max-width: 767px) {
+  
+  }
+  
+  /* Cuando la pantalla es de 575px o menor */
+  @media only screen and (max-width: 575px) {
+  
+  }
+  
+  /*Estilo migrado de materialize*/
+  table.responsive-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: block;
+    position: relative;
+    font-size: 12px;
+  }
+  
+  table.responsive-table th {
+    display: block;
+    text-align: right;
+  }
+  
+  table.responsive-table thead {
+    display: block;
+    float: left;
+    border: 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    max-width: 50%;
+  }
+  
+  table.responsive-table thead tr {
+    display: block;
+    padding: 0 10px 0 0;
+  }
+  
+  table.responsive-table tbody {
+    display: block;
+    width: auto;
+    position: relative;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  table.responsive-table tbody tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  table.responsive-table tr {
+    border-bottom: none;
+    padding: 0 10px;
+  }
+  
+  table.responsive-table td {
+    display: block;
+    min-height: 1.25em;
+    text-align: left;
+  }
+  
+  table.responsive-table th,
+  table.responsive-table td {
+    margin: 0;
+    vertical-align: top;
+  }
+  
+  td,
+  th {
+    padding: 15px 10px;
+  }
+  
+  /*termina migración*/
+  
+  
+  th+th,
+  td+td {
+    vertical-align: middle;
+  }
+  
+  .filtro {
+    padding: 10px 0;
+  }
+  
+  input[type=date]::-webkit-inner-spin-button,
+  input[type=date]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .table > thead > tr > th {
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+  }
+
+  .btn {
+    padding: 6px 12px !important;
+    font-size: 14px !important;
+    line-height: 1.42857143 !important;
+  }
+  .btn-primary-special {
+    background-color: #2541A5;
+    border-color: transparent;
+    color: #fff;
+    border-radius: 4px !important;
+  }
+
+  .title-table {
+    color: #3c67de;
+    font-size: 22px;
+  }

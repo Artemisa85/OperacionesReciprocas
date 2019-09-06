@@ -1,0 +1,98 @@
+<div *ngIf="!isInDetalle">
+  <div novalidate>
+    <h5 class="title-table" style="margin-top: 40px; margin-bottom: 40px">Plantillas</h5>
+    <div style="text-align:center; border-bottom: 2px solid; border-top: 2px solid;">
+      <table style="text-align: center;" class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Modo plantilla</th>
+            <th scope="col">Charset</th>
+            <th scope="col">Activa</th>
+          </tr>
+        </thead>
+
+        <tbody class="IEBody">
+          <tr *ngFor='let plantilla of plantillas, let i = index' class="ajusteOjo">
+            <th (click)="IrADetallePlantilla(plantilla)" class="hoverid imagVerMas" scope="row" >{{plantilla.nombre}}</th>
+            <td style="vertical-align: middle;">{{plantilla.modoPlantilla}}</td>
+            <td>{{plantilla.juegoCaracteres}}</td>
+            <td>{{plantilla.activo | booleanConvencion}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isInDetalle" class="text-center">
+  <div>
+    <h5 style="margin: 10px;">
+      <p style="font-size: 20px;padding: 10px;font-weight: bold;">Detalle de la plantilla:</p>
+    </h5>
+
+    <div class="margin: 15px;">
+      <div class="form-group row justify-content-center">
+        <label class="col-sm-3 ajusteTextoPequeno ">Nombre</label>
+        <input style="text-align:center;" type="text" [(ngModel)]="plantillaDetalle.nombre" class="form-control form-control-sm col-sm-5"
+          readonly>
+      </div>
+      <div class="form-group row justify-content-center">
+        <label class="col-sm-3 ajusteTextoPequeno">Modo plantilla</label>
+        <input style="text-align:center;" type="text" [(ngModel)]="plantillaDetalle.modoPlantilla" class="form-control form-control-sm col-sm-5"
+          readonly>
+      </div>
+      <div class="form-group row justify-content-center">
+        <label class="col-sm-3 ajusteTextoPequeno">Juego de caracteres</label>
+        <input style="text-align:center;" type="text" [(ngModel)]="plantillaDetalle.juegoCaracteres" class="form-control form-control-sm col-sm-5"
+          readonly>
+      </div>
+      <div class="form-group row justify-content-center">
+        <label class="col-sm-3 ajusteTextoPequeno">Fecha de creación</label>
+        <input style="text-align:center;" type="text" [ngModel]="plantillaDetalle.fechaCreacion | date: 'dd/MM/yyyy HH:mm:ss'" class="form-control form-control-sm col-sm-5"
+          readonly>
+      </div>
+      <div class="form-group row justify-content-center">
+        <label class="col-sm-3 ajusteTextoPequeno">Usuario creador</label>
+        <input style="text-align:center;" type="text" [(ngModel)]="plantillaDetalle.creador" class="form-control form-control-sm col-sm-5"
+          readonly>
+      </div>
+      <div class="form-group row justify-content-center">
+        <label class="col-sm-3 ajusteTextoPequeno">Activo</label>
+        <div class="btn-group btn-group-toggle">
+          <label class="btn btn-secondary" #activoSi>
+            <input type="radio" name='asd' [value]='true' [(ngModel)]='plantillaDetalle.activo' (click)='activarPlantilla()'> Sí
+          </label>
+          <label class="btn btn-secondary" #activoNo>
+            <input type="radio" name='asd' [value]='false' [(ngModel)]='plantillaDetalle.activo' (click)='desactivarPlantilla()'> No
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row pb-4">
+      <div class="col-sm-5 justify-content-center">
+        <p>
+          <strong>Editor</strong>
+        </p>
+        <textarea style="height: 600px" class="form-control" id="txtAreaComent" rows="25" #txtAreaComent [(ngModel)]="plantillaDetalle.contenido"
+          (ngModelChange)="changePreview()"></textarea>
+      </div>
+      <div class="col-sm-7 justify-content-center">
+        <p>
+          <strong>Previsualización</strong>
+        </p>
+        <div #preview style="border:1px solid black; overflow:auto;height: 600px;"></div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="row justify-content-center">
+    <button (click)="volverDetalle()" class="btn btn-primary-special col-sm-2 m-3">Volver</button>
+    <button (click)="guardarPlantilla()" class="btn btn-primary-special col-sm-2 m-3">Guardar</button>
+  </div>
+
+
+</div>

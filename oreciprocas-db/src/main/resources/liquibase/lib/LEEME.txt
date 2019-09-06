@@ -1,0 +1,3 @@
+#Ejecutar la siguiente línea de comando desde una consola CMD o Git Bash, esto con el objetivo de instalar el jar jconn4.jar al m2
+
+mvn install:install-file -Dfile=jconn4.jar -DgroupId=com.sybase -DartifactId=jconn-jdbc -Dversion=4.0 -Dpackaging=jar

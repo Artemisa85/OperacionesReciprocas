@@ -1,0 +1,63 @@
+server:
+  port: 9091
+  servlet:
+    context-path: /oreciprocas-rest-api
+
+#Spring Propiedades perfiles
+spring:
+  profiles:
+    active: local
+
+  jpa:
+    database: SYBASE
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        
+  jackson:
+    time-zone: America/Bogota
+
+#Propiedades origen de datos
+  datasource:
+    platform: sybase
+    driverClassName: com.sybase.jdbc4.jdbc.SybDriver
+    url: jdbc:sybase:Tds:127.0.0.1:5000
+    username: oreciprocas
+    password: oreciprocas123
+    
+  mail:
+    host: localhost
+    port: 25
+#    username: javasampleapproach
+#    password: 123javasampleapproach
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls: true
+
+#Configuracion tamaño maximo archivo
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+#Configuración de seguridad OAuth
+security:
+  oauth2:
+    resource:
+      id: oreciprocas-rest
+
+
+    
+#Configuracion personalizada aplicacion.
+oreciprocas:
+  config:
+    #Grupos LDAP que se mapearan con rol FNA_ADMIN (Separados por coma)
+    fna-ldap-roles: UT_DESA
+  upload: 
+    #Directorio base para carga de archivos (gestión operaciones)
+    base-dir: upload
+
+      

@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Registro de entidades</h4>
+    </div>
+    <div class="col-sm-6 col-sm-offset-3 shadow p-3 mb-5 rounded">
+      <form [formGroup]="RegistroForm" style="margin: 5%" novalidate>
+        <div class="form-group">
+          <p style="width: 100%" class="center-block">NIT:</p>
+          <div class="input mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <!--div class="iconPersona"></div-->
+            </div>
+            <input type="text" class="form-control campo" formControlName="NIT" id="NIT" (blur)="ConsultarRazonSocialCorreo(inputUserNIT.value, inputIdCGN.value)"
+              autofocus placeholder="123456789" (paste)="handlerPegar($event)" (keydown)="handlerKeyDown($event)" (keyup)="handlerKeyUp($event)"
+              OnlyNumber="true" #inputUserNIT>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p style="width: 100%" class="center-block">Identificación asignada por la contaduría:</p>
+          <div class="input mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <!--div class="iconIDCont"></div-->
+            </div>
+            <input type="text" class="form-control campo" id="idcgn" formControlName="idcgn" (blur)="ConsultarRazonSocialCorreo(inputUserNIT.value, inputIdCGN.value)"
+              placeholder="123456789" (paste)="handlerPegar($event)" (keydown)="handlerKeyDown($event)" (keyup)="handlerKeyUp($event)"
+              OnlyNumber="true" #inputIdCGN>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p style="width: 100%" class="center-block">Nombre/Razón social:</p>
+          <div class="input mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <!--div class="iconPersona"></div-->
+            </div>
+            <input type="text" class="form-control campo" #inputRazonSocial formControlName="razonSocial" readonly placeholder="Razón social">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p style="width: 100%" class="center-block">Correo electrónico:</p>
+          <div class="input mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <!--div [ngClass]="ValidarForm()" class="iconCorreo"></div> -->
+            </div>
+            <input type="email" id="correo" class="form-control campo" formControlName="correoUser" placeholder="usuario@dominio.com"
+              #inputCorreo maxlength="50">
+          </div>
+        </div>
+        <div class="row text-center" style="margin-top: 50px; margin-bottom: 50px">
+          <div class="col-sm-6">
+            <button style="min-height: 0;width: 105.86px;" class="p-2 bd-highlight btn btn-primary" [routerLink]="['/InicioSesion']">Regresar</button>
+          </div>
+          <div class="col-sm-6">
+            <button style="min-height: 0;" class="p-2 bd-highlight btn btn-primary" (click)="RegistrarUsuario(inputUserNIT.value,inputIdCGN.value, inputCorreo.value)">Guardar</button>
+          </div>
+        </div>
+
+        <div *ngIf="DatosEnviados">
+          <div *ngIf="!Success" role="alert">
+            <div class="divError">
+              <span class="imgError">
+                <img src="./assets/img/fail.png" alt="">
+              </span>
+              <p class="textError">
+                {{msgError}}
+              </p>
+            </div>
+          </div>
+          <div *ngIf="Success" role="alert">
+            <div class="divSuccess">
+              <span class="imgSuccess">
+                <img src="./assets/img/success.png" alt="">
+              </span>
+              <p class="textSuccess">
+                {{msgSuccess}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="correoErroneo" class="col-sm-6 col-sm-offset-3" role="alert">
+    <div class="divError">
+      <span class="imgError">
+        <img src="./assets/img/fail.png" alt="">
+      </span>
+      <p class="textError">
+        {{msgErrorCorreo}}
+      </p>
+    </div>
+  </div>
+
+  <div class="text-center col-sm-12" style="margin-top: 15px;">
+    <p>Cualquier inquietud favor comunicarse al correo
+      <b>jecastro@fna.gov.co</b> o al teléfono en
+      <b>(+571) 3810150</b> ext.
+      <b>6587</b>
+    </p>
+  </div>
+</div>
